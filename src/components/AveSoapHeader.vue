@@ -1,48 +1,59 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+    <div class="container-lg px-lg-0">
+      <div>
+        <a class="navbar-brand" href="#">
+          <AveSoapBaseIcon
+              class="icon-lg"
+              name="logo"
+              width="39"
+              height="61"
+              viewBox="0 0 39 61"/>
+        </a>
+        <AveSoapBaseIcon
+            class="icon-lg-inst"
+            name="instagram"
+            viewBox="0 0 15 15"
+            width="15" height="15"/>
+        <a href="tel:+79181234567">+7(918)1234567</a>
+      </div>
+
+      <div>
+        <AveSoapBaseIcon name="home"/>
+        <a href="">КАТАЛОГ</a>
+        <a href="">ДОСТАВКА И ОПЛАТА</a>
+        <a href="">АКЦИИ</a>
+      </div>
+
+      <div>
+        <a href=""><AveSoapBaseIcon name="search"/></a>
+        <a href=""><AveSoapBaseIcon name="user"/></a>
+        <a href=""><AveSoapBaseIcon name="favoriteFill"/></a>
+        <a href=""><AveSoapBaseIcon name="cart"/></a>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
+import AveSoapBaseIcon from "./AveSoapBaseIcon.vue"
 export default {
-  name: "AveSoapHeader"
+  name: "AveSoapHeader",
+  components: {
+    AveSoapBaseIcon
+  }
 }
 </script>
 
 <style scoped>
-
+@media (min-width: 920px) {
+  .icon-lg {
+    width: 39px;
+    height: 69px;
+  }
+}
+.icon-lg-inst{
+  width: 15px;
+  height: 15px;
+}
 </style>
