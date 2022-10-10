@@ -10,8 +10,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    position: relative;
 }
-
 .main {
     flex: 1 1 auto;
 }
@@ -20,17 +20,14 @@ h1 {
     font-size: 48px;
     font-weight: 700;
 }
-
 h2 {
     font-size: 24px;
     font-weight: 500;
 }
-
 h3 {
     font-size: 14px;
     font-weight: 700;
 }
-
 @media (min-width: 920px) {
     h1 {
         font-size: 144px;
@@ -41,4 +38,22 @@ h3 {
     h3 {
         font-size: 24px;
     }
+}
+a {
+    text-decoration: none;
+    color: var(--mainGrey);
+    cursor: pointer;
+}
+a:hover{
+    transform: translateY(-2px);
+    color: var(--mainGrey);
+}
+button {
+    padding: 0;
+    border: none;
+    outline: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
 }

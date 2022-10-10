@@ -1,6 +1,6 @@
 <template lang="pug">
 main.main
-  h1 Main
+  h1 Main Main Main Main Main
 </template>
 
 <script>

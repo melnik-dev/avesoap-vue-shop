@@ -10,6 +10,7 @@
     <AveSoapBaseIcon name="favoriteFill"/>
     <AveSoapBaseIcon name="close"/>
     <AveSoapBaseIcon name="burger"/>
+
   </footer>
 </template>
 
