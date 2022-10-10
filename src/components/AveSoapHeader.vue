@@ -1,7 +1,7 @@
 <template>
   <header>
     <nav class="navbar px-4 px-md-2 container-lg px-lg-0">
-      <div class="navbar-mobile__wrapper" ref="openMenu">
+      <div class="navbar-mobile__wrapper d-md-none" ref="openMenu">
         <div class="navbar-mobile__menu-box">
           <button class="navbar-mobile__menu-btn" @click="showMenu">
             <AveSoapBaseIcon
@@ -14,59 +14,62 @@
           </button>
         </div>
 
-        <a href="#">
+        <router-link to="/home">
           <AveSoapBaseIcon
               class="navbar-mobile__logo"
               name="logo"
               width="25"
               height="40"
               viewBox="0 0 39 61"/>
-        </a>
+        </router-link>
 
-        <a href="" class="navbar-mobile__cart">
+        <router-link to="/cart" class="navbar-mobile__cart">
           <AveSoapBaseIcon name="cart"/>
-        </a>
+        </router-link>
         <div class="navbar-mobile__menu">
           <ul class="navbar-mobile__menu-list">
             <li class="navbar-mobile__menu-link">
-              <a href=""><AveSoapBaseIcon name="home"/> Домой</a>
+              <router-link to="/home"><AveSoapBaseIcon name="home"/> Домой</router-link>
             </li>
             <li class="navbar-mobile__menu-link">
-              <a href="">Каталог</a>
+              <router-link
+                  to="/home#catalog">Каталог</router-link>
             </li>
             <li class="navbar-mobile__menu-link">
-              <a href="">Доставка и оплата</a>
+              <router-link
+                  to="/home#delivery">Доставка и оплата</router-link>
             </li>
             <li class="navbar-mobile__menu-link">
-              <a href="">Акции</a>
+              <router-link
+                  to="/home#stock">Акции</router-link>
             </li>
             <li class="navbar-mobile__menu-link">
-              <a href=""><AveSoapBaseIcon name="favoriteFill"/> Избранное</a>
+              <router-link to="/favorite"><AveSoapBaseIcon name="favoriteFill"/> Избранное</router-link>
             </li>
             <li class="navbar-mobile__menu-link">
-              <a href=""><AveSoapBaseIcon name="user"/> Войти</a>
+              <router-link to="/profile"><AveSoapBaseIcon name="user"/> Войти</router-link>
             </li>
             <li class="navbar-mobile__menu-link">
-              <a href=""><AveSoapBaseIcon name="phone"/> +7(918)1234567</a>
+              <a href="tel:+79181234567"><AveSoapBaseIcon name="phone"/> +7(918)1234567</a>
             </li>
             <li class="navbar-mobile__menu-link">
-              <a href=""><AveSoapBaseIcon name="instagram" viewBox="0 0 15 15" width="15" height="15"/> instagram</a>
+              <a  @click="goInst"><AveSoapBaseIcon name="instagram" viewBox="0 0 15 15" width="15" height="15"/> instagram</a>
             </li>
           </ul>
         </div>
-        <div class="navbar-mobile__menu-blind"></div>
+        <div class="navbar-mobile__menu-blind" @click="showMenu"></div>
       </div>
       <div class="navbar__wrapper">
         <div class="navbar__item">
-          <a class="navbar__logo" href="#">
+          <router-link to="/home" class="navbar__logo">
             <AveSoapBaseIcon
                 class="icon-lg"
                 name="logo"
                 width="39"
                 height="61"
                 viewBox="0 0 39 61"/>
-          </a>
-          <a class="navbar__inst" href="">
+          </router-link>
+          <a class="navbar__inst" @click="goInst">
             <AveSoapBaseIcon
                 class="icon-lg-inst"
                 name="instagram"
@@ -77,27 +80,33 @@
         </div>
 
         <div class="navbar__item navbar__item-line">
-          <a class="navbar__item-link" href="">
+          <router-link to="/home" class="navbar__item-link">
             <AveSoapBaseIcon name="home"/>
-          </a>
-          <a class="navbar__item-link" href="">КАТАЛОГ</a>
-          <a class="navbar__item-link" href="">ДОСТАВКА И ОПЛАТА</a>
-          <a class="navbar__item-link" href="">АКЦИИ</a>
+          </router-link>
+          <router-link to="/home#catalog"
+                       class="navbar__item-link">КАТАЛОГ
+          </router-link>
+          <router-link to="/home#delivery"
+                       class="navbar__item-link">ДОСТАВКА И ОПЛАТА
+          </router-link>
+          <router-link to="/home#stock"
+                       class="navbar__item-link">АКЦИИ
+          </router-link>
         </div>
 
         <div class="navbar__item">
           <button class="navbar__item-link">
             <AveSoapBaseIcon name="search"/>
           </button>
-          <a class="navbar__item-link" href="">
+          <router-link to="/profile" class="navbar__item-link">
             <AveSoapBaseIcon name="user"/>
-          </a>
-          <a class="navbar__item-link" href="">
+          </router-link>
+          <router-link to="/favorite" class="navbar__item-link">
             <AveSoapBaseIcon name="favoriteFill"/>
-          </a>
-          <a href="">
+          </router-link>
+          <router-link to="/cart">
             <AveSoapBaseIcon name="cart"/>
-          </a>
+          </router-link>
         </div>
       </div>
     </nav>
@@ -115,7 +124,14 @@ export default {
   methods: {
     showMenu() {
       this.$refs.openMenu.classList.toggle("navbar-mobile_show");
+    },
+    goInst(){
+      window.location.href = 'https://www.google.com';
     }
+  },
+  beforeRouteEnter(to, from, next) {
+    console.log("beforeRouteEnter", to, from, next)
+    this.$refs.openMenu.classList.remove("navbar-mobile_show");
   }
 }
 </script>

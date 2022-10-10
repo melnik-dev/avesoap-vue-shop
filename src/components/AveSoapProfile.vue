@@ -1,12 +1,10 @@
 <template>
-  <main class="main">
-    <router-view></router-view>
-  </main>
+<h1>AveSoapProfile</h1>
 </template>
 
 <script>
 export default {
-  name: "AveSoapMain"
+  name: "AveSoapProfile"
 }
 </script>
 
