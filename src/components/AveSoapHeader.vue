@@ -29,31 +29,47 @@
         <div class="navbar-mobile__menu">
           <ul class="navbar-mobile__menu-list">
             <li class="navbar-mobile__menu-link">
-              <router-link to="/home"><AveSoapBaseIcon name="home"/> Домой</router-link>
+              <router-link to="/home">
+                <AveSoapBaseIcon name="home"/>
+                Домой
+              </router-link>
             </li>
             <li class="navbar-mobile__menu-link">
               <router-link
-                  to="/home#catalog">Каталог</router-link>
+                  to="/home#catalog">Каталог
+              </router-link>
             </li>
             <li class="navbar-mobile__menu-link">
               <router-link
-                  to="/home#delivery">Доставка и оплата</router-link>
+                  to="/home#delivery">Доставка и оплата
+              </router-link>
             </li>
             <li class="navbar-mobile__menu-link">
               <router-link
-                  to="/home#stock">Акции</router-link>
+                  to="/home#stock">Акции
+              </router-link>
             </li>
             <li class="navbar-mobile__menu-link">
-              <router-link to="/favorite"><AveSoapBaseIcon name="favoriteFill"/> Избранное</router-link>
+              <router-link to="/favorite">
+                <AveSoapBaseIcon name="favoriteFill"/>
+                Избранное
+              </router-link>
             </li>
             <li class="navbar-mobile__menu-link">
-              <router-link to="/profile"><AveSoapBaseIcon name="user"/> Войти</router-link>
+              <router-link to="/profile">
+                <AveSoapBaseIcon name="user"/>
+                Войти
+              </router-link>
             </li>
             <li class="navbar-mobile__menu-link">
-              <a href="tel:+79181234567"><AveSoapBaseIcon name="phone"/> +7(918)1234567</a>
+              <a href="tel:+79181234567">
+                <AveSoapBaseIcon name="phone"/>
+                +7(918)1234567</a>
             </li>
             <li class="navbar-mobile__menu-link">
-              <a  @click="goInst"><AveSoapBaseIcon name="instagram" viewBox="0 0 15 15" width="15" height="15"/> instagram</a>
+              <a @click="goInst">
+                <AveSoapBaseIcon name="instagram" viewBox="0 0 15 15" width="15" height="15"/>
+                instagram</a>
             </li>
           </ul>
         </div>
@@ -125,13 +141,14 @@ export default {
     showMenu() {
       this.$refs.openMenu.classList.toggle("navbar-mobile_show");
     },
-    goInst(){
+    goInst() {
       window.location.href = 'https://www.google.com';
     }
   },
-  beforeRouteEnter(to, from, next) {
-    console.log("beforeRouteEnter", to, from, next)
-    this.$refs.openMenu.classList.remove("navbar-mobile_show");
+  watch: {
+    '$route'() {
+      this.$refs.openMenu.classList.remove("navbar-mobile_show");
+    }
   }
 }
 </script>
@@ -183,12 +200,15 @@ export default {
   margin-left: -7px;
   visibility: hidden;
 }
+
 .navbar-mobile_show .navbar-mobile__icon-burger {
   visibility: hidden;
 }
+
 .navbar-mobile_show .navbar-mobile__icon-close {
   visibility: visible;
 }
+
 .navbar-mobile__logo {
   transform: rotate(90deg);
 }
@@ -205,12 +225,14 @@ export default {
   transform: translateX(-220px);
   transition: all 1s ease;
 }
-.navbar-mobile_show .navbar-mobile__menu{
+
+.navbar-mobile_show .navbar-mobile__menu {
   visibility: visible;
   transform: translateX(0);
   transition: all 1s ease;
 }
-.navbar-mobile__menu-blind{
+
+.navbar-mobile__menu-blind {
   position: absolute;
   top: 84px;
   left: 0;
@@ -221,23 +243,27 @@ export default {
   opacity: 0;
   visibility: hidden;
 }
-.navbar-mobile_show .navbar-mobile__menu-blind{
+
+.navbar-mobile_show .navbar-mobile__menu-blind {
   visibility: visible;
   opacity: 0.6;
   transition: opacity 0.3s ease;
 }
-.navbar-mobile__menu-list{
+
+.navbar-mobile__menu-list {
   display: flex;
   flex-direction: column;
   list-style: none;
   padding-left: 24px;
   padding-right: 24px;
 }
-.navbar-mobile__menu-link{
+
+.navbar-mobile__menu-link {
   padding-top: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid #c8c8c8;
 }
+
 //desktop
 .navbar__wrapper {
   display: none;
