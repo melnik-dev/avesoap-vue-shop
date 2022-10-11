@@ -17,7 +17,7 @@ export default {
   props: {
     name: {
       type: String,
-      default: 'box'
+      default: 'logo'
     },
     width: {
       type: [Number, String],

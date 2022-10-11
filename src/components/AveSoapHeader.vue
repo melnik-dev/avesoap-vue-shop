@@ -1,7 +1,7 @@
 <template>
   <header>
-    <nav class="navbar px-4 px-md-2 container-lg px-lg-0">
-      <div class="navbar-mobile__wrapper d-md-none" ref="openMenu">
+    <nav class="navbar px-4 px-md-2 container-lg px-lg-0" ref="openMenu">
+      <div class="navbar-mobile__wrapper d-md-none">
         <div class="navbar-mobile__menu-box">
           <button class="navbar-mobile__menu-btn" @click="showMenu">
             <AveSoapBaseIcon
@@ -146,7 +146,7 @@ export default {
     }
   },
   watch: {
-    '$route'() {
+    $route() {
       this.$refs.openMenu.classList.remove("navbar-mobile_show");
     }
   }
@@ -162,6 +162,9 @@ export default {
     padding-top: 55px;
     padding-bottom: 50px;
   }
+}
+.navbar-mobile_show{
+  background: var(--mainBgMenu);
 }
 
 //mobile
