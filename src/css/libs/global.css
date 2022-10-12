@@ -1,9 +1,14 @@
 body {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 11px;
     color: var(--mainGrey);
     background: var(--mainBg);
+}
+@media (min-width: 768px) {
+    body {
+        font-size: 14px;
+    }
 }
 .wrapper {
     overflow: hidden;
@@ -33,6 +38,11 @@ h3 {
         font-size: 64px;
     }
 }
+@media (min-width: 768px) {
+    h2 {
+        font-size: 54px;
+    }
+}
 @media (min-width: 992px) {
     h1 {
         font-size: 96px;
@@ -48,6 +58,10 @@ h3 {
     h3 {
         font-size: 24px;
     }
+}
+img {
+    max-width: 100%;
+    display: block;
 }
 a {
     text-decoration: none;

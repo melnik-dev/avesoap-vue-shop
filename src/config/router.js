@@ -11,7 +11,7 @@ export default createRouter({
     history: createWebHistory(),
     routes: [
         { path: "/home", component: AveSoapHome, alias: "/" },
-        { path: "/catalog", component: AveSoapСatalog },
+        { path: "/catalog/:name", component: AveSoapСatalog },
         { path: "/product/:id", component: AveSoapProduct },
         { path: "/favorite", component: AveSoapFavorite },
         { path: "/cart", component: AveSoapCart },
