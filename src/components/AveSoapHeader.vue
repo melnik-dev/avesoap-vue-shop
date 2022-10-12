@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav class="navbar px-4 px-md-2 container-lg px-lg-0" ref="openMenu">
+    <nav class="navbar px-4 container-lg px-lg-0" ref="openMenu">
       <div class="navbar-mobile__wrapper d-md-none">
         <div class="navbar-mobile__menu-box">
           <button class="navbar-mobile__menu-btn" @click="showMenu">

@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="container-lg footer">
     <div class="footer__wrapper">
 
       <div class="footer__lik-cont-wrapp">
@@ -60,10 +60,10 @@
     <div class="footer__copyright">
       <span>ИП Асовская Анна Валерьевна</span>
       <span>ИНН 231121559311 • ОГРНИП  319237500363990.</span>
-      <span class="footer__copyright_site">avesoap.ru, 2022.</span>
+      <span class="footer__copyright_site">&#169; avesoap.ru, 2022.</span>
     </div>
     <div class="footer__creator">
-    <a href="https://github.com/melnik-dev" title="t.me/melnik_dev">creator Aleksander Melnik</a>
+    <a href="https://github.com/melnik-dev" title="t.me/melnik_dev">dev Aleksander Melnik</a>
     </div>
   </footer>
 </template>
@@ -114,7 +114,6 @@ export default {
 .footer__contact {
   display: flex;
   gap: 8px;
-  max-width: 115px;
   margin-bottom: 50px;
   @media (min-width: 768px) {
     margin-bottom: 0;

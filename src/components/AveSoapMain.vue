@@ -11,8 +11,4 @@ export default {
 </script>
 
 <style scoped>
-.main{
-  padding-right: 24px;
-  padding-left: 24px;
-}
 </style>
