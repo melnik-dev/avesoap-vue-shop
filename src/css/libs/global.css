@@ -69,7 +69,6 @@ a {
     cursor: pointer;
 }
 a:hover{
-    transform: translateY(-2px);
     color: var(--mainGrey);
 }
 button {
