@@ -1,7 +1,7 @@
 <template>
   <section class="catalog px-4 container-lg px-lg-0">
-    <h2 class="catalog-title">Каталог</h2>
-    <h2 class="catalog-title">Уход за кожей</h2>
+    <h2 v-if="isAll" class="catalog-title">Каталог</h2>
+    <h2 v-if="!isAll" class="catalog-title">{{ this.$store.getters.getCategoryTitle }}</h2>
     <div class="catalog__filter-wrapper">
 
       <select class="catalog__select-category" name="category">
@@ -15,6 +15,7 @@
       <div class="catalog__category-list">
         <router-link
             v-for="(item, i) in сategory"
+            @click="setCategory(item.link, item.title)"
             :key="i"
             :to="'/catalog/' + item.link"
             class="catalog__category-link">
@@ -63,9 +64,21 @@ export default {
   data() {
     return {
       product: this.$store.getters.getProduct,
-      сategory: this.$store.getters.getCategory
+      сategory: this.$store.getters.getCategory,
+      isAll: window.location.pathname === '/catalog/all',
+
+    }
+  },
+  methods:{
+    setCategory(link, cat){
+      window.location.pathname = '/catalog/' + link;
+      this.$store.commit('setCategoryTitle', cat);
     }
   }
+
+  // created() {
+  //   let URL = new URL(window.location)
+  // }
 }
 </script>
 

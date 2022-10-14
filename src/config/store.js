@@ -4,7 +4,8 @@ import shopData from "../shopData";
 const store = createStore({
     state() {
         return {
-            data: shopData
+            data: shopData,
+            categoryTitle: "sxsx",
             }
         },
     getters: {
@@ -17,6 +18,14 @@ const store = createStore({
         getFavorite (state) {
             return state.data.favorite
         },
+        getCategoryTitle (state) {
+            return state.categoryTitle
+        },
+    },
+    mutations: {
+        setCategoryTitle (state, cat) {
+            state.categoryTitle = cat;
+        }
     }
 })
 

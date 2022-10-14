@@ -3,7 +3,7 @@ export default {
         {
             title: 'Все',
             img: 'soap.jpg',
-            link: 'All'
+            link: 'all'
         },
         {
             title: 'Мыло',
@@ -46,44 +46,6 @@ export default {
             link: 'different'
         },
     ],
-    // сategory: [
-    //     {
-    //         name: 'Все',
-    //         link: 'all'
-    //     },
-    //     {
-    //         name: 'Мыло',
-    //         link: 'soap'
-    //     },
-    //     {
-    //         name: 'Уход за кожей',
-    //         link: 'skin-care'
-    //     },
-    //     {
-    //         name: 'Уход за волосами',
-    //         link: 'hair-care'
-    //     },
-    //     {
-    //         name: 'Соль и бисер для ванн',
-    //         link: 'bath-salt'
-    //     },
-    //     {
-    //         name: 'Бомбочки',
-    //         link: 'bombs'
-    //     },
-    //     {
-    //         name: 'Флорентийское саше',
-    //         link: 'florentine-sachet'
-    //     },
-    //     {
-    //         name: 'Свечи',
-    //         link: 'candles'
-    //     },
-    //     {
-    //         name: 'Разное',
-    //         link: 'all'
-    //     },
-    // ],
     product: [
         {
             title: 'Мыло с маслом лавра, виноградными косточками и льняным маслом',
