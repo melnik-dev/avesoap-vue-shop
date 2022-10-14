@@ -4,8 +4,8 @@
         :to="{ path: `${toPath}${setData.link}`}"
         href=""
         class="product__item">
-      <img :src="require('../assets/img/home-catalog/' + setData.img)" :alt="setData.title">
-      <span :class="['product__title', { 'title_up' : catalog}]">{{ setData.title }}</span>
+      <img :src="require('../assets/img/' + toAssets + setData.img)" :alt="setData.name">
+      <span :class="['product__title', { 'title_up' : catalog }]">{{ setData.title }}</span>
       <div v-if="product || favorite"
            class="product__price">
         <span v-if="setData.isSale" class="product__old-price">{{ setData.oldPrice }}</span>
@@ -14,8 +14,8 @@
     </router-link>
     <button v-if="product"
             class="product__btn-favorite" @click="addFavorite">
-      <AveSoapBaseIcon name="favorite" width="13" height="13"/>
-      <AveSoapBaseIcon name="favoriteFill" width="13" height="13" class="d-none"/>
+      <AveSoapBaseIcon v-if="!isFavorite" name="favorite" width="13" height="13"/>
+      <AveSoapBaseIcon v-if="isFavorite" name="favoriteFill" width="13" height="13"/>
     </button>
     <button v-if="favorite"
             class="product__btn-remove"  @click="removeFavorite">
@@ -53,12 +53,15 @@ export default {
   },
   data() {
     return {
-      toPath: this.catalog ? '/catalog/' : '/product/'
+      toPath: this.catalog ? '/catalog/' : '/product/',
+      toAssets: this.catalog ? 'home-catalog/' : 'product/',
+      isFavorite: false
     }
   },
   methods: {
     addFavorite() {
       console.log("addFavorite")
+      this.isFavorite = !this.isFavorite
     },
     removeFavorite() {
       console.log("removeFavorite")
@@ -70,12 +73,7 @@ export default {
 <style scoped lang="scss">
 .product__wrapper {
   position: relative;
-  padding-left: 8px;
-  padding-right: 8px;
-  @media (min-width: 992px) {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
+
 }
 
 .product__item {
@@ -95,7 +93,6 @@ export default {
   margin-top: 8px;
   @media (min-width: 992px) {
     margin-top: 16px;
-    text-transform: uppercase;
   }
 }
 
@@ -125,7 +122,7 @@ export default {
   align-items: center;
   position: absolute;
   top: 6px;
-  right: 14px;
+  right: 18px;
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -144,7 +141,7 @@ export default {
 
   @media (min-width: 768px) {
     top: 12px;
-    right: 20px;
+    right: 24px;
     width: 34px;
     height: 34px;
   }

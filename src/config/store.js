@@ -8,9 +8,15 @@ const store = createStore({
             }
         },
     getters: {
-        getCatalog (state) {
-            return state.data.catalog
-        }
+        getCategory (state) {
+            return state.data.сategory
+        },
+        getProduct (state) {
+            return state.data.product
+        },
+        getFavorite (state) {
+            return state.data.favorite
+        },
     }
 })
 

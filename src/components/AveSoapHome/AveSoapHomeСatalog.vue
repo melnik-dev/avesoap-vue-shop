@@ -3,7 +3,7 @@
 <h2 class="home__catalog-title">Каталог</h2>
   <div class="home__catalog-list row">
     <AveSoapProductElm
-        v-for="(item, i) in catalog"
+        v-for="(item, i) in category"
         :key="i"
         :catalog="true"
         :set-data="item"/>
@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-      catalog: this.$store.getters.getCatalog
+      category: this.$store.getters.getCategory
     }
   }
 }
