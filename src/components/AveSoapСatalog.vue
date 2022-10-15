@@ -66,22 +66,25 @@ export default {
       product: this.$store.getters.getProduct,
       сategory: this.$store.getters.getCategory,
       isAll: window.location.pathname === '/catalog/all',
-      setSelect:'all'
+      setSelect: 'all'
     }
   },
   methods:{
     setCategory(link, cat){
-      window.location.pathname = '/catalog/' + link;
+      this.$router.push('/catalog/' + link)
       this.$store.commit('setСategoryTitle', cat);
     },
     setSelectCategory(option) {
       console.log(option);
     }
+  },
+  created() {
+    const catPath = window.location.pathname.split('/');
+    console.log(catPath[2]);
+    const titlePathCategory = this.сategory.filter(cat => cat.link === catPath[2])[0];
+    console.log(titlePathCategory);
+    this.$store.commit('setСategoryTitle', titlePathCategory.title);
   }
-
-  // created() {
-  //   let URL = new URL(window.location)
-  // }
 }
 </script>
 
