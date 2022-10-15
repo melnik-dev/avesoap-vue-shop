@@ -25,7 +25,7 @@
         </div>
 
         <div class="footer__link-wrap">
-          <router-link to="/home#catalog">КАТАЛОГ</router-link>
+          <router-link to="/catalog/all">КАТАЛОГ</router-link>
           <router-link to="/home#about">О НАС</router-link>
           <router-link to="/home#delivery">ДОСТАВКА И ОПЛАТА</router-link>
           <router-link to="/home#instagram">МЫ В INSTAGRAM</router-link>

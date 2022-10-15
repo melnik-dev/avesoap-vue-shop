@@ -3,55 +3,56 @@ export default {
         {
             title: 'Все',
             img: 'soap.jpg',
-            link: 'all'
+            id: 'all'
         },
         {
             title: 'Мыло',
             img: 'soap.jpg',
-            link: 'soap'
+            id: 'soap'
         },
         {
             title: 'Уход за кожей',
             img: 'skin-care.jpg',
-            link: 'skin-care'
+            id: 'skin-care'
         },
         {
             title: 'Уход за волосами',
             img: 'hair-care.jpg',
-            link: 'hair-care'
+            id: 'hair-care'
         },
         {
             title: 'Соль и бисер для ванн',
             img: 'bath-salt.jpg',
-            link: 'bath-salt'
+            id: 'bath-salt'
         },
         {
             title: 'Бомбочки',
             img: 'bombs.jpg',
-            link: 'bombs'
+            id: 'bombs'
         },
         {
             title: 'Флорентийское саше',
             img: 'florentine-sachet.jpg',
-            link: 'florentine-sachet'
+            id: 'florentine-sachet'
         },
         {
             title: 'Свечи',
             img: 'candles.jpg',
-            link: 'candles'
+            id: 'candles'
         },
         {
             title: 'Разное',
             img: 'different.jpg',
-            link: 'different'
+            id: 'different'
         },
     ],
     product: [
         {
             title: 'Мыло с маслом лавра, виноградными косточками и льняным маслом',
             img: 'soap-lavr.jpg',
-            link: '1',
+            id: '1',
             сategory: '1',
+            isFavorite: true,
             isAllergenic: true,
             isArtificial: false,
             isSale: true,
@@ -61,8 +62,9 @@ export default {
         {
             title: 'Скраб для тела лимонный',
             img: 'lemon-scrub.jpg',
-            link: '2',
+            id: '2',
             сategory: '2',
+            isFavorite: true,
             isAllergenic: false,
             isArtificial: true,
             isSale: false,
@@ -72,8 +74,9 @@ export default {
         {
             title: 'Мыло с маслом лавра',
             img: 'soap-lavr-or.jpg',
-            link: '3',
+            id: '3',
             сategory: '1',
+            isFavorite: false,
             isAllergenic: false,
             isArtificial: false,
             isSale: false,
@@ -85,7 +88,7 @@ export default {
         {
             title: 'Скраб для тела лимонный',
             img: 'lemon-scrub.jpg',
-            link: '2',
+            id: '2',
             сategory: '2',
             isAllergenic: false,
             isArtificial: true,

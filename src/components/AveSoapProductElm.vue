@@ -1,7 +1,7 @@
 <template>
   <div class="product__wrapper col-6 col-sm-4 col-lg-3">
     <router-link
-        :to="{ path: `${toPath}${setData.link}`}"
+        :to="{ path: `${toPath}${setData.id}`}"
         href=""
         class="product__item">
       <img :src="require('../assets/img/' + toAssets + setData.img)" :alt="setData.name">
@@ -13,12 +13,12 @@
       </div>
     </router-link>
     <button v-if="product"
-            class="product__btn-favorite" @click="addFavorite">
-      <AveSoapBaseIcon v-if="!isFavorite" name="favorite" width="13" height="13"/>
-      <AveSoapBaseIcon v-if="isFavorite" name="favoriteFill" width="13" height="13"/>
+            class="product__btn-favorite" @click="addFavorite(setData.id)">
+      <AveSoapBaseIcon v-if="!setData.isFavorite" name="favorite" width="13" height="13"/>
+      <AveSoapBaseIcon v-if="setData.isFavorite" name="favoriteFill" width="13" height="13"/>
     </button>
     <button v-if="favorite"
-            class="product__btn-remove"  @click="removeFavorite">
+            class="product__btn-remove"  @click="removeFavorite(setData.id)">
       <AveSoapBaseIcon name="close" width="16" height="16"/>
     </button>
     <span v-if="setData.isSale" class="product__sale">Распродажа</span>
@@ -55,16 +55,14 @@ export default {
     return {
       toPath: this.catalog ? '/catalog/' : '/product/',
       toAssets: this.catalog ? 'home-catalog/' : 'product/',
-      isFavorite: false
     }
   },
   methods: {
-    addFavorite() {
-      console.log("addFavorite")
-      this.isFavorite = !this.isFavorite
+    addFavorite(id) {
+      this.$store.commit('setFavorite', id);
     },
-    removeFavorite() {
-      console.log("removeFavorite")
+    removeFavorite(id) {
+      this.$store.commit('delFavorite', id);
     }
   }
 }

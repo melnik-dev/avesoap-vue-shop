@@ -47,5 +47,8 @@ export default {
   @media (min-width: 992px) {
     row-gap: 24px;
   }
+  .product__wrapper:first-child{
+    display: none;
+  }
 }
 </style>

@@ -3,7 +3,7 @@
     <h2 class="favorite-title">Избранное</h2>
     <div class="favorite-list row">
       <AveSoapProductElm
-          v-for="(item, i) in favorite"
+          v-for="(item, i) in favoriteProduct"
           :key="i"
           :favorite="true"
           :set-data="item"/>
@@ -22,7 +22,12 @@ export default {
   },
   data() {
     return {
-      favorite: this.$store.getters.getFavorite
+      favorite: this.$store.getters.getProduct
+    }
+  },
+  computed: {
+    favoriteProduct() {
+      return this.$store.getters.getProduct.filter(product => product.isFavorite === true)
     }
   }
 }

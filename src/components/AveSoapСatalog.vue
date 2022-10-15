@@ -14,9 +14,9 @@
       <div class="catalog__category-list">
         <router-link
             v-for="(item, i) in сategory"
-            @click="setCategory(item.link, item.title)"
+            @click="setCategory(item.id, item.title)"
             :key="i"
-            :to="'/catalog/' + item.link"
+            :to="'/catalog/' + item.id"
             class="catalog__category-link">
           {{ item.title }}
         </router-link>
@@ -69,9 +69,9 @@ export default {
       setSelect: 'all'
     }
   },
-  methods:{
-    setCategory(link, cat){
-      this.$router.push('/catalog/' + link)
+  methods: {
+    setCategory(id, cat) {
+      this.$router.push('/catalog/' + id);
       this.$store.commit('setСategoryTitle', cat);
     },
     setSelectCategory(option) {
@@ -80,10 +80,9 @@ export default {
   },
   created() {
     const catPath = window.location.pathname.split('/');
-    console.log(catPath[2]);
-    const titlePathCategory = this.сategory.filter(cat => cat.link === catPath[2])[0];
-    console.log(titlePathCategory);
+    const titlePathCategory = this.сategory.filter(cat => cat.id === catPath[2])[0];
     this.$store.commit('setСategoryTitle', titlePathCategory.title);
+
   }
 }
 </script>
