@@ -5,7 +5,7 @@ const store = createStore({
     state() {
         return {
             data: shopData,
-            categoryTitle: "sxsx",
+            categoryTitle: "state",
             }
         },
     getters: {
@@ -23,7 +23,7 @@ const store = createStore({
         },
     },
     mutations: {
-        setCategoryTitle (state, cat) {
+        setСategoryTitle (state, cat) {
             state.categoryTitle = cat;
         }
     }

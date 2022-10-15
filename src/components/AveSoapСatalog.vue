@@ -4,14 +4,13 @@
     <h2 v-if="!isAll" class="catalog-title">{{ this.$store.getters.getCategoryTitle }}</h2>
     <div class="catalog__filter-wrapper">
 
-      <select class="catalog__select-category" name="category">
-        <option value="Все">Все</option>
+      <select v-model="setSelectCategory" class="catalog__select-category" name="category">
+        <option value="all">Все</option>
         <option value="Мыло">Мыло</option>
         <option value="Уход за кожей">Уход за кожей</option>
         <option value="Уход за волосами">Уход за волосами</option>
         <option value="Соль и бисер для ванн">Соль и бисер для ванн</option>
       </select>
-
       <div class="catalog__category-list">
         <router-link
             v-for="(item, i) in сategory"
@@ -22,6 +21,7 @@
           {{ item.title }}
         </router-link>
       </div>
+
       <div class="catalog__filter">
         <p><select class="catalog__select-filter" name="category">
           <option value="по популярности">по популярности</option>
@@ -66,13 +66,16 @@ export default {
       product: this.$store.getters.getProduct,
       сategory: this.$store.getters.getCategory,
       isAll: window.location.pathname === '/catalog/all',
-
+      setSelect:'all'
     }
   },
   methods:{
     setCategory(link, cat){
       window.location.pathname = '/catalog/' + link;
-      this.$store.commit('setCategoryTitle', cat);
+      this.$store.commit('setСategoryTitle', cat);
+    },
+    setSelectCategory(option) {
+      console.log(option);
     }
   }
 
