@@ -84,7 +84,7 @@ export default {
             oldPrice: '',
         },
     ],
-    favorite: [
+    cart: [
         {
             title: 'Скраб для тела лимонный',
             img: 'lemon-scrub.jpg',

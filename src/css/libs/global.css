@@ -80,3 +80,15 @@ button {
     background-color: transparent;
     cursor: pointer;
 }
+.btn {
+    background: var(--mainGrey);
+    color: white;
+    text-transform: uppercase;
+    padding: 6px 12px;
+}
+@media (min-width: 992px) {
+    .btn {
+        font-size: 16px;
+        padding: 10px 26px;
+    }
+}
