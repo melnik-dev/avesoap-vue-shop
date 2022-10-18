@@ -65,7 +65,6 @@ export default {
     return {
       product: this.$store.getters.getProduct,
       сategory: this.$store.getters.getCategory,
-      isAll: window.location.pathname === '/catalog/all',
       сategoryPath: '',
       setSelect: 'all'
     }

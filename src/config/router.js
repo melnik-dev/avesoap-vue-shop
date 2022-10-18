@@ -12,7 +12,7 @@ export default createRouter({
     routes: [
         { path: "/home", component: AveSoapHome, alias: "/" },
         { path: "/catalog/:name", component: AveSoapСatalog },
-        { path: "/product/:id", component: AveSoapProduct },
+        { path: "/product/:productId", component: AveSoapProduct },
         { path: "/favorite", component: AveSoapFavorite },
         { path: "/cart", component: AveSoapCart },
         { path: "/profile", component: AveSoapProfile},
