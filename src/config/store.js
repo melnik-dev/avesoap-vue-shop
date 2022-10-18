@@ -6,6 +6,7 @@ const store = createStore({
         return {
             data: shopData,
             categoryTitle: "state",
+            сategoryPath: ""
         }
     },
     getters: {
@@ -20,6 +21,9 @@ const store = createStore({
         },
         getCategoryTitle(state) {
             return state.categoryTitle
+        },
+        getCategoryPath(state) {
+            return state.сategoryPath
         },
     },
     mutations: {

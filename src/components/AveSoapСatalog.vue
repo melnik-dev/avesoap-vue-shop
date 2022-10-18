@@ -1,16 +1,16 @@
 <template>
   <section class="catalog px-4 container-lg px-lg-0">
-    <h2 v-if="isAll" class="catalog-title">Каталог</h2>
-    <h2 v-if="!isAll" class="catalog-title">{{ this.$store.getters.getCategoryTitle }}</h2>
+    <h2 class="catalog-title">{{ this.$store.getters.getCategoryTitle }}</h2>
     <div class="catalog__filter-wrapper">
 
-      <select v-model="setSelectCategory" class="catalog__select-category" name="category">
-        <option value="all">Все</option>
-        <option value="Мыло">Мыло</option>
-        <option value="Уход за кожей">Уход за кожей</option>
-        <option value="Уход за волосами">Уход за волосами</option>
-        <option value="Соль и бисер для ванн">Соль и бисер для ванн</option>
+      <select v-model="setSelect" class="catalog__select-category" name="category">
+        <option
+            v-for="(option, i) in сategory"
+            :key="i" :value="option.id">
+          {{ option.title }}
+        </option>
       </select>
+
       <div class="catalog__category-list">
         <router-link
             v-for="(item, i) in сategory"
@@ -44,7 +44,7 @@
     </div>
     <div class="catalog-list row">
       <AveSoapProductElm
-          v-for="(item, i) in product"
+          v-for="(item, i) in filterProduct()"
           :key="i"
           :product="true"
           :set-data="item"/>
@@ -66,23 +66,38 @@ export default {
       product: this.$store.getters.getProduct,
       сategory: this.$store.getters.getCategory,
       isAll: window.location.pathname === '/catalog/all',
+      сategoryPath: '',
       setSelect: 'all'
     }
   },
   methods: {
+    filterProduct() {
+      if (this.сategoryPath === 'all') {
+        return this.product;
+      }
+      console.log(this.сategoryPath)
+      return this.product.filter(prod => {
+        return prod.сategory === this.сategoryPath;
+
+      })
+    },
     setCategory(id, cat) {
+    this.сategoryPath = id;
       this.$router.push('/catalog/' + id);
       this.$store.commit('setСategoryTitle', cat);
-    },
-    setSelectCategory(option) {
-      console.log(option);
+    }
+  },
+  watch: {
+    setSelect() {
+      this.$router.push('/catalog/' + this.setSelect);
+      this.$store.commit('setСategoryTitle', this.setSelect);
     }
   },
   created() {
-    const catPath = window.location.pathname.split('/');
-    const titlePathCategory = this.сategory.filter(cat => cat.id === catPath[2])[0];
+    const path = window.location.pathname.split('/');
+    this.сategoryPath = path[2];
+    const titlePathCategory = this.сategory.filter(cat => cat.id === this.сategoryPath)[0];
     this.$store.commit('setСategoryTitle', titlePathCategory.title);
-
   }
 }
 </script>
