@@ -43,6 +43,12 @@ const store = createStore({
                     item.isFavorite = false;
                 }
             })
+        },
+        delCart(state, productId) {
+            console.log('delCart');
+            state.data.cart = state.data.cart.filter(prod => {
+               return  prod.id = productId;
+            });
         }
     }
 })

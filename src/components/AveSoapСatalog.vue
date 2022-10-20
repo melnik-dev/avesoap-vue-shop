@@ -175,8 +175,11 @@ export default {
 }
 
 .catalog__category-list {
-  display: flex;
-  justify-content: center;
+  display: none;
+  @media (min-width: 992px) {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .catalog__category-link {
