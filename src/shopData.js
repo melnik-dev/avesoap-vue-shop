@@ -92,7 +92,7 @@ export default {
     ],
     cart: [
         {
-            id: 1,
+            id: '1',
             title: 'Мыло с маслом лавра, виноградными косточками и льняным маслом',
             img: 'soap-lavr.jpg',
             price: 221,
