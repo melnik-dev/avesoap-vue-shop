@@ -40,7 +40,7 @@
                   <span class="cart__total-price">{{ totalPrice(product.amount, product.price) }}p</span>
 
                   <button
-                      class="product__btn-remove" @click="removeCart(product.id)">
+                      class="product__btn-remove" @click="deleteFromCart(product.id)">
                     <AveSoapBaseIcon name="close" width="16" height="16"/>
                   </button>
                 </div>
@@ -73,7 +73,8 @@
 </template>
 
 <script>
-import AveSoapBaseIcon from './AveSoapBaseIcon.vue'
+import AveSoapBaseIcon from './AveSoapBaseIcon.vue';
+// import mapGetters from 'vuex';
 
 export default {
   name: "AveSoapCart",
@@ -86,9 +87,9 @@ export default {
     }
   },
   methods: {
-    removeCart(id) {
-      console.log('removeCart', id)
-      this.$store.commit('delCart', id);
+    deleteFromCart(id) {
+      console.log('Cart', id)
+      this.$store.commit('deleteFromCart', id);
     },
     minusAmount(amount) {
       console.log('amount--')

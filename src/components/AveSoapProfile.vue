@@ -1,5 +1,7 @@
 <template>
-<h1>AveSoapProfile</h1>
+  <section class="product px-4 container-lg px-lg-0">
+<h2>AveSoapProfile</h2>
+  </section>
 </template>
 
 <script>

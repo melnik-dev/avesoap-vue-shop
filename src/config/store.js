@@ -7,15 +7,6 @@ const store = createStore({
             data: shopData,
             categoryTitle: "state",
             // сategoryPath: ""б
-            cart: [
-                {
-                    id: '1',
-                    title: 'Мыло с маслом лавра, виноградными косточками и льняным маслом',
-                    img: 'soap-lavr.jpg',
-                    price: 221,
-                    amount: 2,
-                }
-            ]
         }
     },
     getters: {
@@ -53,10 +44,10 @@ const store = createStore({
                 }
             })
         },
-        delCart(state, productId) {
-            console.log('delCart', productId);
-            console.log(state.cart);
-            state.cart = state.cart.filter(prod => {
+        deleteFromCart(state, productId) {
+            console.log('store', productId);
+            console.log(state.data.cart);
+            state.data.cart = state.data.cart.filter(prod => {
                 console.log('filter');
                return Number(prod.id) !== Number(productId);
             });

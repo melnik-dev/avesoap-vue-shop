@@ -27,7 +27,7 @@
           <button class="btn-plus" @click="plusAmount">+</button>
         </div>
 
-        <button class="description__btn btn" @click="addCard">Добвить в корзину</button>
+        <button class="description__btn btn" @click="addToCard">Добвить в корзину</button>
 
         <button class="description__btn-favorite" @click="addFavorite(product.id)">
           <AveSoapBaseIcon v-if="!product.isFavorite" name="favorite" width="13" height="13"/>
@@ -55,7 +55,7 @@ export default {
     }
   },
   methods: {
-    addCard() {
+    addToCard() {
       const prod = {
         id: this.product.id,
         title: this.product.title,
@@ -63,7 +63,15 @@ export default {
         price: this.product.price,
         amount: this.amount,
       }
+      if(this.$store.getters.getCart.length) {
+        this.$store.getters.getCart.map(prod => {
+          if (prod.id === this.product.id) {
+            prod.id = prod.id + this.amount;
+          }
+        })
+      } else {
       this.$store.getters.getCart.push(prod);
+      }
       console.log(this.$store.getters.getCart);
     },
     addFavorite(id) {
