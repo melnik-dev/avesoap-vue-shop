@@ -44,12 +44,23 @@ const store = createStore({
                 }
             })
         },
+        addToCard(state, newProduct) {
+            let isProductToCart = true;
+            state.data.cart.forEach(productCart => {
+                if (productCart.id === newProduct.id) {
+                    isProductToCart = false;
+                    productCart.amount = productCart.amount + newProduct.amount;
+                }
+            });
+            if (isProductToCart) {
+                state.data.cart.push(newProduct);
+            }
+        },
         deleteFromCart(state, productId) {
             console.log('store', productId);
             console.log(state.data.cart);
             state.data.cart = state.data.cart.filter(prod => {
-                console.log('filter');
-               return Number(prod.id) !== Number(productId);
+               return prod.id !== productId;
             });
 
             // const cart = state.data.cart.filter(prod => {

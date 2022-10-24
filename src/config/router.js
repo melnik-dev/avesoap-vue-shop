@@ -4,7 +4,7 @@ import AveSoapСatalog from "../components/AveSoapСatalog.vue";
 import AveSoapProduct from "../components/AveSoapProduct.vue";
 import AveSoapFavorite from "../components/AveSoapFavorite.vue";
 import AveSoapCart from "../components/AveSoapCart.vue";
-import AveSoapProfile from "../components/AveSoapProfile.vue";
+import AveSoapProfile from "../components/AveSoapProfile/AveSoapProfile.vue";
 import AveSoapNotFound from "../components/AveSoapNotFound.vue";
 
 export default createRouter({

@@ -50,28 +50,20 @@ export default {
     AveSoapBaseIcon
   },
   data() {
-    return{
+    return {
       amount: 1
     }
   },
   methods: {
     addToCard() {
-      const prod = {
+      const newProduct = {
         id: this.product.id,
         title: this.product.title,
         img: this.product.img,
         price: this.product.price,
         amount: this.amount,
       }
-      if(this.$store.getters.getCart.length) {
-        this.$store.getters.getCart.map(prod => {
-          if (prod.id === this.product.id) {
-            prod.id = prod.id + this.amount;
-          }
-        })
-      } else {
-      this.$store.getters.getCart.push(prod);
-      }
+      this.$store.commit('addToCard', newProduct);
       console.log(this.$store.getters.getCart);
     },
     addFavorite(id) {
@@ -125,7 +117,7 @@ export default {
 }
 
 .product__description,
-.product__gallery{
+.product__gallery {
   @media (min-width: 576px) {
     width: 50%;
   }
@@ -167,18 +159,21 @@ export default {
   gap: 16px;
   margin-bottom: 24px;
 }
-.description__amount-input-wrapper{
+
+.description__amount-input-wrapper {
   position: relative;
   display: flex;
 }
+
 .description__amount-input {
   width: 70px;
   background: var(--mainGrey);
   color: white;
   text-align: center;
 }
+
 .btn-minus,
-.btn-plus{
+.btn-plus {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -189,12 +184,15 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.btn-minus{
+
+.btn-minus {
   left: 0;
 }
-.btn-plus{
+
+.btn-plus {
   right: 0;
 }
+
 .description__btn {
 }
 

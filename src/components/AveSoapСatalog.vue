@@ -1,12 +1,17 @@
 <template>
   <section class="catalog px-4 container-lg px-lg-0">
-    <h2 class="catalog-title">{{ this.$store.getters.getCategoryTitle }}</h2>
+    <h2 class="catalog-title">
+      {{ this.$store.getters.getCategoryTitle === 'Все' ?  'Каталог' : this.$store.getters.getCategoryTitle }}
+    </h2>
+
     <div class="catalog__filter-wrapper">
 
       <select v-model="setSelect" class="catalog__select-category" name="category">
         <option
             v-for="(option, i) in сategory"
-            :key="i" :value="option.id">
+            :key="i"
+            :value="option.id"
+            :name="option.title">
           {{ option.title }}
         </option>
       </select>
@@ -42,7 +47,8 @@
         </div>
       </div>
     </div>
-    <div class="catalog-list row">
+
+    <div class="catalog__product-list row">
       <AveSoapProductElm
           v-for="(item, i) in filterProduct()"
           :key="i"
@@ -81,22 +87,26 @@ export default {
       })
     },
     setCategory(id, cat) {
-    this.сategoryPath = id;
+      this.сategoryPath = id;
       this.$router.push('/catalog/' + id);
       this.$store.commit('setСategoryTitle', cat);
+    },
+    chooseCategory() {
+      const titlePathCategory = this.сategory.filter(cat => cat.id === this.сategoryPath)[0];
+      this.$store.commit('setСategoryTitle', titlePathCategory.title);
     }
   },
   watch: {
     setSelect() {
+      this.сategoryPath = this.setSelect;
       this.$router.push('/catalog/' + this.setSelect);
-      this.$store.commit('setСategoryTitle', this.setSelect);
+      this.chooseCategory();
     }
   },
   created() {
     const path = window.location.pathname.split('/');
     this.сategoryPath = path[2];
-    const titlePathCategory = this.сategory.filter(cat => cat.id === this.сategoryPath)[0];
-    this.$store.commit('setСategoryTitle', titlePathCategory.title);
+    this.chooseCategory();
   }
 }
 </script>
@@ -118,7 +128,7 @@ export default {
   }
 }
 
-.catalog-list {
+.catalog__product-list {
   row-gap: 16px;
   @media (min-width: 992px) {
     row-gap: 24px;
@@ -184,6 +194,7 @@ export default {
 
 .catalog__category-link {
   margin-right: 24px;
+  text-align: center;
 
   &:last-child {
     margin-right: 0;

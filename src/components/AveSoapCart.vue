@@ -1,7 +1,7 @@
 <template>
   <section class="cart">
     <h2>Корзина</h2>
-    <h4 v-if="cart.length == 0" class="px-4 container-lg px-lg-0">В корзине пусто...</h4>
+    <h4 v-if="!cart.length" class="px-4 container-lg px-lg-0">В корзине пусто...</h4>
     <div v-else class="cart__wrapper container-lg px-0">
       <div class="cart__list-wrapper">
         <div class="cart__header">
