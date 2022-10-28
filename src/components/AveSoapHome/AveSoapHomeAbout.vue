@@ -1,5 +1,5 @@
 <template>
-  <section class="home__about px-4 container-lg px-lg-0" id="catalog">
+  <section class="home__about section px-4 container-lg px-lg-0" id="catalog">
     <h2 class="home__about-title">О нас</h2>
     <div class="home__about-box">
       <div class="home__about-dosoap">
@@ -48,12 +48,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.home__about {
-  margin-bottom: 60px;
-  @media (min-width: 992px) {
-    margin-bottom: 110px;
-  }
-}
 
 .home__about-box {
   display: grid;
@@ -67,15 +61,16 @@ export default {
   background: white;
   padding: 34px;
   border: 1px solid var(--mainGrey);
-  @media (min-width: 992px) {
-    order: -1;
-  }
 }
 
 .home__about-docs {
   display: grid;
   grid-template-columns: 1fr 36% 22%;
   column-gap: 16px;
+  @media (min-width: 768px) {
+    gap: 16px;
+    order: -1;
+  }
 }
 
 .home__about-docs-box-wrapper {
@@ -131,6 +126,7 @@ export default {
   padding: 16px;
   @media (min-width: 992px) {
     padding-top: 0;
+    align-items: flex-start;
   }
 }
 </style>
