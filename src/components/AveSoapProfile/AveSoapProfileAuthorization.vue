@@ -4,12 +4,12 @@
   <div class="login__wrapper">
     <div class="login__name">
       <span>ИМЯ ПОЛЬЗОВАТЕЛЯ ИЛИ E-MAIL *</span>
-      <input type="text" placeholder="ekaterina.ivanova@gmail.com">
+      <input v-model="email" type="text" placeholder="ekaterina.ivanova@gmail.com">
     </div>
 
     <div class="login__password">
       <span>ПАРОЛЬ *</span>
-      <input type="password">
+      <input v-model="password" type="password">
     </div>
 
     <div class="login__btn-box">
@@ -29,6 +29,12 @@
 export default {
   name: "AveSoapProfileAuthorization",
   emits: ['goToRegistration'],
+  data() {
+    return {
+      email: '',
+      password: ''
+    }
+  },
   methods: {
     goToRegistration() {
       this.$emit('goToRegistration')

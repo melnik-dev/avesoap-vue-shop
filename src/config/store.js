@@ -6,7 +6,7 @@ const store = createStore({
         return {
             data: shopData,
             categoryTitle: "state",
-            // сategoryPath: ""б
+            isAuthorization: false
         }
     },
     getters: {
@@ -22,9 +22,9 @@ const store = createStore({
         getCategoryTitle(state) {
             return state.categoryTitle
         },
-        // getCategoryPath(state) {
-        //     return state.сategoryPath
-        // },
+        getIsAuthorization(state) {
+            return state.isAuthorization
+        }
     },
     mutations: {
         setСategoryTitle(state, cat) {

@@ -1,7 +1,7 @@
 <template>
   <section class="cart">
     <h2>Корзина</h2>
-    <h4 v-if="!cart.length" class="px-4 container-lg px-lg-0">В корзине пусто...</h4>
+    <h4 v-if="!this.$store.getters.getCart.length" class="px-4 container-lg px-lg-0">В корзине пусто...</h4>
     <div v-else class="cart__wrapper container-lg px-0">
       <div class="cart__list-wrapper">
         <div class="cart__header">
@@ -18,7 +18,7 @@
         <div class="cart__list">
 
           <div class="cart__item-wrapper"
-               v-for="(product, i) in cart"
+               v-for="(product, i) in this.$store.getters.getCart"
                :key="i">
             <div class="cart__item  px-4 container-lg px-lg-0">
               <img :src="require('../assets/img/product/' + product.img)" :alt="product.title">
@@ -111,13 +111,6 @@ export default {
       return this.cart.reduce((sum, current) => {
         return sum + current.amount * current.price;
       }, 0)
-    }
-  },
-  watch: {
-    amount() {
-      if (this.amount <= 0 || this.amount > 99) {
-        this.amount = 1
-      }
     }
   }
 }
