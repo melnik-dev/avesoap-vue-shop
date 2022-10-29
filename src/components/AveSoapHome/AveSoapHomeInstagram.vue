@@ -1,5 +1,5 @@
 <template>
-  <section class="home__inst section px-4 container-lg px-lg-0" id="catalog">
+  <section class="home__inst section px-4 container-lg px-lg-0">
     <img class="home__inst-img-zero" src="../../assets/img/home-inst/inst0.jpg" alt="instagram">
     <h2 class="home__inst-title">Мы в<br> Instagram</h2>
     <img class="home__inst-img-one" src="../../assets/img/home-inst/inst1.jpg" alt="instagram">
