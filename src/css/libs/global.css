@@ -61,6 +61,7 @@ h3 {
     }
 
     h2 {
+        font-weight: 300;
         margin-bottom: 32px;
     }
 }
