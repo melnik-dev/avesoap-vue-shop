@@ -1,5 +1,5 @@
 <template>
-  <section class="home__delivery section px-4 container-lg px-lg-0" id="catalog">
+  <section class="home__delivery section px-4 container-lg px-lg-0" id="delivery">
     <h2 class="home__delivery-title">Доставка и оплата</h2>
     <div class="home__delivery-box">
       <div class="home__delivery-rocket">

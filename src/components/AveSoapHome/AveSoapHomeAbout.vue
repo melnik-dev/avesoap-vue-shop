@@ -1,5 +1,5 @@
 <template>
-  <section class="home__about section px-4 container-lg px-lg-0" id="catalog">
+  <section class="home__about section px-4 container-lg px-lg-0">
     <h2 class="home__about-title">О нас</h2>
     <div class="home__about-box">
       <div class="home__about-dosoap">

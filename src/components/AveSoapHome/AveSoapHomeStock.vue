@@ -1,6 +1,6 @@
 <template>
   <section class="home__stock section px-4 container-lg px-lg-0">
-    <h2 class="home__stock-title">Акции</h2>
+    <h2 class="home__stock-title" id="stock">Акции</h2>
     <div class="home__stock-box">
       <img src="../../assets/img/home-stock/stock1.jpg" alt="stock">
       <img src="../../assets/img/home-stock/stock1.jpg" alt="stock">

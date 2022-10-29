@@ -84,7 +84,7 @@ export default {
   created() {
     setTimeout(() => {
       this.isContentLoader = false;
-    }, 500)
+    }, 800)
   }
 }
 </script>

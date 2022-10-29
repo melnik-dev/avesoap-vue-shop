@@ -18,18 +18,21 @@ export default createRouter({
         { path: "/profile", component: AveSoapProfile},
         { path: "/:pathMatch(.*)*", component: AveSoapNotFound },
     ],
-    // scrollBehavior (to,
-    //                 from,
-    //                 savedPosition) {
-    //     if (to.hash) {
-    //         return {
-    //             selector: to.hash,
-    //             behavior: 'smooth',
-    //         }
-    //     } else if (savedPosition) {
-    //         return savedPosition;
-    //     } else {
-    //         return { x: 0, y: 0 }
-    //     }
-    // }
+    scrollBehavior (to,
+                    from,
+                    savedPosition) {
+        if (to.hash) {
+            setTimeout(() => {
+                const element = document.getElementById(to.hash.replace(/#/, ''))
+                if (element && element.scrollIntoView) {
+                    element.scrollIntoView({block: 'start', behavior: 'smooth'})
+                }
+            }, 1000)
+            return {el: to.hash};
+        }
+        else if (savedPosition) {
+            return savedPosition
+        }
+        return {top: 0}
+    }
 });
