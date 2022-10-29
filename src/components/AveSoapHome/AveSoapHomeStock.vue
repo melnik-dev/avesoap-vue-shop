@@ -28,7 +28,7 @@ export default {
     grid-template-columns: repeat(4, 1fr);
     margin-top: -65px;
     column-gap: 24px;
-    
+
     & img:nth-child(2n) {
       margin-top: 0;
     }

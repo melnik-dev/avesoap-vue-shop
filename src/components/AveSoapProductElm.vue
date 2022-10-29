@@ -1,5 +1,18 @@
 <template>
-  <div class="product__wrapper col-6 col-sm-4 col-lg-3">
+  <div
+      v-if="isContentLoader"
+      class="product__wrapper col-6 col-sm-4 col-lg-3">
+    <content-loader
+        speed="2"
+        viewBox="0 0 222 250"
+        primaryColor="#e6e6e6"
+        secondaryColor="#c7c7c7">
+      <rect x="0" y="0" rx="0" ry="0" width="428" height="225" />
+      <rect x="30" y="235" rx="0" ry="0" width="160" height="10" />
+    </content-loader>
+  </div>
+
+  <div v-else class="product__wrapper col-6 col-sm-4 col-lg-3">
     <router-link
         :to="{ path: `${toPath}${setData.id}`}"
         href=""
@@ -27,11 +40,13 @@
 
 <script>
 import AveSoapBaseIcon from "./AveSoapBaseIcon.vue";
+import { ContentLoader } from 'vue-content-loader'
 
 export default {
   name: "AveSoapProductElm",
   components: {
-    AveSoapBaseIcon
+    AveSoapBaseIcon,
+    ContentLoader
   },
   props: {
     setData: {
@@ -55,6 +70,7 @@ export default {
     return {
       toPath: this.catalog ? '/catalog/' : '/product/',
       toAssets: this.catalog ? 'home-catalog/' : 'product/',
+      isContentLoader: true
     }
   },
   methods: {
@@ -64,6 +80,11 @@ export default {
     removeFavorite(id) {
       this.$store.commit('delFavorite', id);
     }
+  },
+  created() {
+    setTimeout(() => {
+      this.isContentLoader = false;
+    }, 500)
   }
 }
 </script>

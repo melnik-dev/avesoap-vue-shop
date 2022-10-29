@@ -1,7 +1,15 @@
 <template>
   <section class="product px-4 container-lg px-lg-0">
     <div class="product__gallery">
-      <img :src="require('../assets/img/product/' + product.img)" :alt="product.title">
+      <content-loader
+          v-if="isContentLoader"
+          speed="2"
+          viewBox="0 0 255 255"
+          primaryColor="#e6e6e6"
+          secondaryColor="#c7c7c7">
+        <rect x="0" y="0" rx="0" ry="0" width="255" height="255" />
+      </content-loader>
+      <img v-else :src="require('../assets/img/product/' + product.img)" :alt="product.title">
     </div>
 
     <div class="product__description">
@@ -43,15 +51,18 @@
 
 <script>
 import AveSoapBaseIcon from './AveSoapBaseIcon.vue';
+import { ContentLoader } from 'vue-content-loader'
 
 export default {
   name: "AveSoapProduct",
   components: {
-    AveSoapBaseIcon
+    AveSoapBaseIcon,
+    ContentLoader
   },
   data() {
     return {
-      amount: 1
+      amount: 1,
+      isContentLoader: true
     }
   },
   methods: {
@@ -90,6 +101,11 @@ export default {
         this.amount = 1
       }
     }
+  },
+  created() {
+    setTimeout(() => {
+      this.isContentLoader = false;
+    }, 500)
   }
 }
 </script>
