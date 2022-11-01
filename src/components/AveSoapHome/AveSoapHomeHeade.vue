@@ -10,8 +10,35 @@
 </template>
 
 <script>
+import gsap from "gsap";
+
 export default {
-  name: "AveSoapHomeHeade"
+  name: "AveSoapHomeHeade",
+  mounted() {
+    gsap.fromTo(".home__heade",
+        {
+          opacity: 0,
+          scale: 2,
+        },
+        {
+          duration: 1.5,
+          opacity: 1,
+          scale: 1,
+          x: 0,
+        });
+    gsap.fromTo(".heade__title",
+        {
+          opacity: 0,
+          x: "-120%",
+          scale: 0.2,
+        },
+        {
+          duration: 1.6,
+          opacity: 1,
+          scale: 1,
+          x: 0,
+        })
+  }
 }
 </script>
 
@@ -67,6 +94,7 @@ export default {
     margin-left: 110px;
   }
 }
+
 .heade__wave {
   position: absolute;
   bottom: -28px;

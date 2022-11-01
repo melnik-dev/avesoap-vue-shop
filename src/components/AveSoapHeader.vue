@@ -36,7 +36,7 @@
             </li>
             <li class="navbar-mobile__menu-link">
               <router-link
-                  to="/catalog/all">Каталог
+                  to="/home#catalog">Каталог
               </router-link>
             </li>
             <li class="navbar-mobile__menu-link">
@@ -99,7 +99,7 @@
           <router-link to="/home" class="navbar__item-link">
             <AveSoapBaseIcon name="home"/>
           </router-link>
-          <router-link to="/catalog/all"
+          <router-link to="/home#catalog"
                        class="navbar__item-link">КАТАЛОГ
           </router-link>
           <router-link to="/home#delivery"

@@ -3,7 +3,7 @@
       v-if="isContentLoader"
       class="product__wrapper col-6 col-sm-4 col-lg-3">
     <content-loader
-        speed="2"
+        :speed="2"
         viewBox="0 0 222 250"
         primaryColor="#e6e6e6"
         secondaryColor="#c7c7c7">
@@ -14,7 +14,7 @@
 
   <div v-else class="product__wrapper col-6 col-sm-4 col-lg-3">
     <router-link
-        :to="{ path: `${toPath}${setData.id}`}"
+        :to="toPath"
         href=""
         class="product__item">
       <img :src="require('../assets/img/' + toAssets + setData.img)" :alt="setData.name">
@@ -68,9 +68,9 @@ export default {
   },
   data() {
     return {
-      toPath: this.catalog ? '/catalog/' : '/product/',
+      toPath: this.catalog ? { path: 'catalog', query: { category: this.setData.id } } : { path: `/product/${this.setData.id}` },
       toAssets: this.catalog ? 'home-catalog/' : 'product/',
-      isContentLoader: true
+      isContentLoader: true,
     }
   },
   methods: {

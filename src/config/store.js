@@ -5,7 +5,6 @@ const store = createStore({
     state() {
         return {
             data: shopData,
-            categoryTitle: "state",
             isAuthorization: false
         }
     },
@@ -19,17 +18,11 @@ const store = createStore({
         getCart(state) {
             return state.data.cart
         },
-        getCategoryTitle(state) {
-            return state.categoryTitle
-        },
         getIsAuthorization(state) {
             return state.isAuthorization
         }
     },
     mutations: {
-        setСategoryTitle(state, cat) {
-            state.categoryTitle = cat;
-        },
         setFavorite(state, productId) {
             state.data.product.forEach(item => {
                 if(item.id === productId) {

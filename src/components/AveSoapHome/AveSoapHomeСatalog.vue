@@ -1,6 +1,6 @@
 <template>
 <section class="home__catalog px-4 container-lg px-lg-0" id="catalog">
-<h2 class="home__catalog-title">Каталог</h2>
+<h2 class="home__catalog-title home-title">Каталог</h2>
   <div class="home__catalog-list row">
     <AveSoapProductElm
         v-for="(item, i) in category"
@@ -14,6 +14,8 @@
 
 <script>
 import AveSoapProductElm from "../AveSoapProductElm.vue"
+// import gsap from "gsap";
+
 export default {
   name: "AveSoapHomeСatalog",
   components: {
@@ -23,7 +25,18 @@ export default {
     return {
       category: this.$store.getters.getCategory
     }
-  }
+  },
+  // mounted() {
+  //   const tl = gsap.timeline({repeatDelay: 0.1, });
+  //   tl.from(".home__catalog-list",{ y: "100%", opacity: 0, duration: 0.4});
+  //   tl.from(".home__catalog-item-2",{ y: "100%", opacity: 0, duration: 0.4});
+  //   tl.from(".home__catalog-item-3",{ y: "100%", opacity: 0, duration: 0.4});
+  //   tl.from(".home__catalog-item-4",{ y: "100%", opacity: 0, duration: 0.4});
+  //   tl.from(".home__catalog-item-5",{ y: "100%", opacity: 0, duration: 0.4});
+  //   tl.from(".home__catalog-item-6",{ y: "100%", opacity: 0, duration: 0.4});
+  //   tl.from(".home__catalog-item-7",{ y: "100%", opacity: 0, duration: 0.4});
+  //   tl.from(".home__catalog-item-8",{ y: "100%", opacity: 0, duration: 0.4});
+  // }
 }
 </script>
 

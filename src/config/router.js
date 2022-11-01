@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import AveSoapHome from "../components/AveSoapHome.vue";
+import AveSoapHome from "../components/AveSoapHome/AveSoapHome.vue";
 import AveSoapСatalog from "../components/AveSoapСatalog.vue";
 import AveSoapProduct from "../components/AveSoapProduct.vue";
 import AveSoapFavorite from "../components/AveSoapFavorite.vue";
@@ -11,7 +11,7 @@ export default createRouter({
     history: createWebHistory(),
     routes: [
         { path: "/home", component: AveSoapHome, alias: "/" },
-        { path: "/catalog/:name", component: AveSoapСatalog },
+        { path: "/catalog", component: AveSoapСatalog },
         { path: "/product/:productId", component: AveSoapProduct },
         { path: "/favorite", component: AveSoapFavorite },
         { path: "/cart", component: AveSoapCart },

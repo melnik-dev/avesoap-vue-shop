@@ -1,14 +1,14 @@
 <template>
   <section class="catalog px-4 container-lg px-lg-0">
     <h2 class="catalog-title">
-      {{ this.$store.getters.getCategoryTitle === 'Все' ?  'Каталог' : this.$store.getters.getCategoryTitle }}
+      {{ categoryTitle === 'Все' ? 'Каталог' : categoryTitle }}
     </h2>
 
     <div class="catalog__filter-wrapper">
 
-      <select v-model="setSelect" class="catalog__select-category" name="category">
+      <select v-model="activeCategory" class="catalog__select-category" name="category">
         <option
-            v-for="(option, i) in сategory"
+            v-for="(option, i) in getCategory"
             :key="i"
             :value="option.id"
             :name="option.title">
@@ -17,14 +17,13 @@
       </select>
 
       <div class="catalog__category-list">
-        <router-link
-            v-for="(item, i) in сategory"
-            @click="setCategory(item.id, item.title)"
+        <span
+            v-for="(item, i) in getCategory"
+            @click="choiceCategory(item.id, item.title)"
             :key="i"
-            :to="'/catalog/' + item.id"
             class="catalog__category-link">
           {{ item.title }}
-        </router-link>
+        </span>
       </div>
 
       <div class="catalog__filter">
@@ -61,6 +60,7 @@
 
 <script>
 import AveSoapProductElm from "./AveSoapProductElm.vue"
+import {mapGetters} from 'vuex'
 
 export default {
   name: "AveSoapСatalog",
@@ -69,44 +69,39 @@ export default {
   },
   data() {
     return {
-      product: this.$store.getters.getProduct,
-      сategory: this.$store.getters.getCategory,
-      сategoryPath: '',
-      setSelect: 'all'
+      activeCategory: 'all',
+      categoryTitle: 'Все',
     }
   },
   methods: {
     filterProduct() {
-      if (this.сategoryPath === 'all') {
-        return this.product;
-      }
-      console.log(this.сategoryPath)
-      return this.product.filter(prod => {
-        return prod.сategory === this.сategoryPath;
+      this.$router.push({ path: 'catalog', query: { category: this.activeCategory } });
+      // window.history.pushState(
+      //     null,
+      //     '',
+      //     `${window.location.pathname}?category=${this.activeCategory}`
+      // );
 
+      if (this.activeCategory === 'all') {
+        return this.getProduct
+      }
+      return this.getProduct.filter(prod => {
+        return prod.сategory === this.activeCategory;
       })
     },
-    setCategory(id, cat) {
-      this.сategoryPath = id;
-      this.$router.push('/catalog/' + id);
-      this.$store.commit('setСategoryTitle', cat);
+    choiceCategory(id, cat) {
+      this.activeCategory = id;
+      this.categoryTitle = cat;
     },
-    chooseCategory() {
-      const titlePathCategory = this.сategory.filter(cat => cat.id === this.сategoryPath)[0];
-      this.$store.commit('setСategoryTitle', titlePathCategory.title);
-    }
   },
-  watch: {
-    setSelect() {
-      this.сategoryPath = this.setSelect;
-      this.$router.push('/catalog/' + this.setSelect);
-      this.chooseCategory();
-    }
+  computed: {
+    ...mapGetters([
+      'getCategory',
+      'getProduct',
+    ])
   },
   created() {
-    const path = window.location.pathname.split('/');
-    this.сategoryPath = path[2];
-    this.chooseCategory();
+    this.activeCategory = this.$route.query.category;
   }
 }
 </script>
@@ -195,6 +190,7 @@ export default {
 .catalog__category-link {
   margin-right: 24px;
   text-align: center;
+  cursor: pointer;
 
   &:last-child {
     margin-right: 0;

@@ -23,7 +23,11 @@
             <div class="cart__item  px-4 container-lg px-lg-0">
               <img :src="require('../assets/img/product/' + product.img)" :alt="product.title">
               <div class="cart__title-wrapper">
-                <div class="cart__title">{{ product.title }}</div>
+                <div class="cart__title">
+                  <router-link :to=" `/product/${product.id}` ">
+                    {{ product.title }}
+                  </router-link>
+                </div>
 
                 <div class="cart__amount-wrapper">
                   <span class="cart__price">{{ product.price }}р</span>
