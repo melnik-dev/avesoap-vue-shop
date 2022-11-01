@@ -3,7 +3,7 @@
 <h2 class="home__catalog-title home-title">Каталог</h2>
   <div class="home__catalog-list row">
     <AveSoapProductElm
-        v-for="(item, i) in category"
+        v-for="(item, i) in getCategory"
         :key="i"
         :catalog="true"
         :set-data="item"/>
@@ -14,6 +14,7 @@
 
 <script>
 import AveSoapProductElm from "../AveSoapProductElm.vue"
+import {mapGetters} from "vuex";
 // import gsap from "gsap";
 
 export default {
@@ -21,11 +22,11 @@ export default {
   components: {
     AveSoapProductElm
   },
-  data() {
-    return {
-      category: this.$store.getters.getCategory
-    }
-  },
+  computed: {
+    ...mapGetters([
+        'getCategory'
+    ])
+  }
   // mounted() {
   //   const tl = gsap.timeline({repeatDelay: 0.1, });
   //   tl.from(".home__catalog-list",{ y: "100%", opacity: 0, duration: 0.4});

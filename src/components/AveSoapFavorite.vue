@@ -14,20 +14,19 @@
 
 <script>
 import AveSoapProductElm from "./AveSoapProductElm.vue"
+import {mapGetters} from "vuex";
 
 export default {
   name: "AveSoapFavorite",
   components: {
     AveSoapProductElm
   },
-  data() {
-    return {
-      favorite: this.$store.getters.getProduct
-    }
-  },
   computed: {
+    ...mapGetters([
+        'getProduct'
+    ]),
     favoriteProduct() {
-      return this.$store.getters.getProduct.filter(product => product.isFavorite === true)
+      return this.getProduct.filter(product => product.isFavorite)
     }
   }
 }

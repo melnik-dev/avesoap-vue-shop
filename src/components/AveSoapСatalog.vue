@@ -27,22 +27,24 @@
       </div>
 
       <div class="catalog__filter">
-        <p><select class="catalog__select-filter" name="category">
-          <option value="по популярности">по популярности</option>
-          <option value="по возрастанию цены">по возрастанию цены</option>
-          <option value="по убыванию цены">по убыванию цены</option>
-          <option value="по скидке">по скидке</option>
+        <p><select
+            v-model="actualFilter"
+            class="catalog__select-filter"
+            name="actual-filter">
+          <option value="popularity">по популярности</option>
+          <option value="ascending-price">по возрастанию цены</option>
+          <option value="descending-price">по убыванию цены</option>
+          <option value="discount">по скидке</option>
         </select></p>
         <div class="catalog__checkbox-filter">
           <div class="checkbox__wrap">
-            <input id="checkbox__one" type="checkbox">
+            <input v-model="isNoArtificial" id="checkbox__one" type="checkbox">
             <label for="checkbox__one">Без искусственных компонентов</label>
           </div>
           <div class="checkbox__wrap">
-            <input id="checkbox__two" type="checkbox">
+            <input v-model="isHypoallergenic" id="checkbox__two" type="checkbox">
             <label for="checkbox__two">Гипоаллергенно</label>
           </div>
-
         </div>
       </div>
     </div>
@@ -71,23 +73,68 @@ export default {
     return {
       activeCategory: 'all',
       categoryTitle: 'Все',
+      actualFilter: 'popularity',
+      isHypoallergenic: false,
+      isNoArtificial: false
     }
   },
   methods: {
     filterProduct() {
-      this.$router.push({ path: 'catalog', query: { category: this.activeCategory } });
+      this.$router.push({path: 'catalog', query: {category: this.activeCategory}});
       // window.history.pushState(
       //     null,
       //     '',
       //     `${window.location.pathname}?category=${this.activeCategory}`
       // );
 
+      switch (this.actualFilter) {
+        case 'popularity':
+          this.getProduct;
+          break;
+
+        case 'ascending-price':
+        case 'descending-price':
+          this.getProduct.sort((a, b) => {
+            if (this.actualFilter === 'ascending-price') {
+              return a.price - b.price
+            }
+            if (this.actualFilter === 'descending-price') {
+              return b.price - a.price
+            }
+          });
+          break;
+
+        case 'discount':
+          console.log('discount')
+          break;
+      }
+
       if (this.activeCategory === 'all') {
-        return this.getProduct
+        return this.getProduct.filter(prod => {
+          if (this.isNoArtificial && this.isHypoallergenic) {
+            return prod.isNoArtificial && prod.isHypoallergenic;
+          }
+          if (this.isNoArtificial) {
+            return prod.isNoArtificial;
+          }
+          if (this.isHypoallergenic) {
+            return prod.isHypoallergenic;
+          }
+          return this.getProduct
+        });
       }
       return this.getProduct.filter(prod => {
+        if (this.isNoArtificial && this.isHypoallergenic) {
+          return prod.сategory === this.activeCategory && prod.isNoArtificial && prod.isHypoallergenic;
+        }
+        if (this.isNoArtificial) {
+          return prod.сategory === this.activeCategory && prod.isNoArtificial;
+        }
+        if (this.isHypoallergenic) {
+          return prod.сategory === this.activeCategory && prod.isHypoallergenic;
+        }
         return prod.сategory === this.activeCategory;
-      })
+      });
     },
     choiceCategory(id, cat) {
       this.activeCategory = id;

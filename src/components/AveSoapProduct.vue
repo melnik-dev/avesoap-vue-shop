@@ -3,7 +3,7 @@
     <div class="product__gallery">
       <content-loader
           v-if="isContentLoader"
-          speed="2"
+          :speed="2"
           viewBox="0 0 255 255"
           primaryColor="#e6e6e6"
           secondaryColor="#c7c7c7">

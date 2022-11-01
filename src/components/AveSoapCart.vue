@@ -1,7 +1,7 @@
 <template>
   <section class="cart">
     <h2>Корзина</h2>
-    <h4 v-if="!this.$store.getters.getCart.length" class="px-4 container-lg px-lg-0">В корзине пусто...</h4>
+    <h4 v-if="!getCart.length" class="px-4 container-lg px-lg-0">В корзине пусто...</h4>
     <div v-else class="cart__wrapper container-lg px-0">
       <div class="cart__list-wrapper">
         <div class="cart__header">
@@ -18,7 +18,7 @@
         <div class="cart__list">
 
           <div class="cart__item-wrapper"
-               v-for="(product, i) in this.$store.getters.getCart"
+               v-for="(product, i) in getCart"
                :key="i">
             <div class="cart__item  px-4 container-lg px-lg-0">
               <img :src="require('../assets/img/product/' + product.img)" :alt="product.title">
@@ -78,44 +78,41 @@
 
 <script>
 import AveSoapBaseIcon from './AveSoapBaseIcon.vue';
-// import mapGetters from 'vuex';
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "AveSoapCart",
   components: {
     AveSoapBaseIcon
   },
-  data() {
-    return {
-      cart: this.$store.getters.getCart,
-    }
-  },
   methods: {
-    deleteFromCart(id) {
-      console.log('Cart', id)
-      this.$store.commit('deleteFromCart', id);
-    },
+    ...mapMutations([
+      'deleteFromCart',
+    ]),
     minusAmount(amount) {
-      console.log('amount--')
       return amount--
     },
     plusAmount(amount) {
-      console.log(this.cart[0].amount)
       return amount++
     },
     totalPrice(amount, price) {
       return amount * price;
     },
     amountProduct() {
-      return this.cart.reduce((sum, current) => {
+      return this.getCart.reduce((sum, current) => {
         return sum + current.amount
       }, 0)
     },
     amountPrice() {
-      return this.cart.reduce((sum, current) => {
+      return this.getCart.reduce((sum, current) => {
         return sum + current.amount * current.price;
       }, 0)
     }
+  },
+  computed: {
+    ...mapGetters([
+      'getCart',
+    ])
   }
 }
 </script>

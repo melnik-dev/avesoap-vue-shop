@@ -26,12 +26,12 @@
       </div>
     </router-link>
     <button v-if="product"
-            class="product__btn-favorite" @click="addFavorite(setData.id)">
+            class="product__btn-favorite" @click="addToFavorite(setData.id)">
       <AveSoapBaseIcon v-if="!setData.isFavorite" name="favorite" width="13" height="13"/>
       <AveSoapBaseIcon v-if="setData.isFavorite" name="favoriteFill" width="13" height="13"/>
     </button>
     <button v-if="favorite"
-            class="product__btn-remove"  @click="removeFavorite(setData.id)">
+            class="product__btn-remove"  @click="deleteFromFavorite(setData.id)">
       <AveSoapBaseIcon name="close" width="16" height="16"/>
     </button>
     <span v-if="setData.isSale" class="product__sale">Распродажа</span>
@@ -41,6 +41,7 @@
 <script>
 import AveSoapBaseIcon from "./AveSoapBaseIcon.vue";
 import { ContentLoader } from 'vue-content-loader'
+import { mapMutations} from "vuex";
 
 export default {
   name: "AveSoapProductElm",
@@ -74,12 +75,10 @@ export default {
     }
   },
   methods: {
-    addFavorite(id) {
-      this.$store.commit('setFavorite', id);
-    },
-    removeFavorite(id) {
-      this.$store.commit('delFavorite', id);
-    }
+    ...mapMutations([
+      'addToFavorite',
+      'deleteFromFavorite'
+    ])
   },
   created() {
     setTimeout(() => {
