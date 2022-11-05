@@ -1,6 +1,7 @@
 import {createStore} from "vuex";
 import getters from "./modules/getters.js";
 import mutations from "./modules/mutations.js";
+import actions from "./modules/actions.js";
 import shopData from "../shopData";
 
 const store = createStore({
@@ -11,7 +12,8 @@ const store = createStore({
         }
     },
     getters: getters,
-    mutations: mutations
+    mutations: mutations,
+    actions: actions
 })
 
 

@@ -4,17 +4,27 @@
   <div class="login__wrapper">
     <div class="login__name">
       <span>ИМЯ ПОЛЬЗОВАТЕЛЯ ИЛИ E-MAIL *</span>
-      <input v-model="email" type="text" placeholder="ekaterina.ivanova@gmail.com">
+      <input v-model.lazy="email" type="text" placeholder="ekaterina.ivanova@gmail.com">
+      <span class="error" v-if="v$.email.$error">
+       {{ v$.email.$errors[0].$message }}
+      </span>
     </div>
 
     <div class="login__password">
       <span>ПАРОЛЬ *</span>
-      <input v-model="password" type="password">
+      <input v-model.lazy="password" type="password">
+      <span class="error" v-if="v$.password.$error">
+        {{ v$.password.$errors[0].$message }}
+      </span>
     </div>
 
     <div class="login__btn-box">
       <div class="login__btn-wrapper">
-        <button class="login__btn btn">ВОЙТИ</button>
+        <button
+            @click="logIn"
+            class="login__btn btn">
+          ВОЙТИ
+        </button>
         <input id="login__check" type="checkbox" checked>
         <label for="login__check">Запомнить меня</label>
       </div>
@@ -26,16 +36,40 @@
 </template>
 
 <script>
+import {useVuelidate} from '@vuelidate/core'
+import {required, email, minLength, helpers} from '@vuelidate/validators'
+
 export default {
   name: "AveSoapProfileAuthorization",
   emits: ['goToRegistration'],
   data() {
     return {
+      v$: useVuelidate(),
       email: '',
       password: ''
     }
   },
+  validations() {
+    return {
+      email: {
+        required: helpers.withMessage("Обезательное поле", required),
+        email: helpers.withMessage("Неправельная почта", email),
+      },
+      password: {
+        required: helpers.withMessage("Обезательное поле", required),
+        minLength: helpers.withMessage("Пароль больше 6 символов", minLength(6)),
+      },
+    }
+  },
   methods: {
+    logIn() {
+      this.v$.$validate()
+      if (!this.v$.$error) {
+        console.log('ok')
+      } else {
+        console.log('error')
+      }
+    },
     goToRegistration() {
       this.$emit('goToRegistration')
     }

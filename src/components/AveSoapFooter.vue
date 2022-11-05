@@ -25,7 +25,7 @@
         </div>
 
         <div class="footer__link-wrap">
-          <router-link to="/catalog/all">КАТАЛОГ</router-link>
+          <router-link to="/home#catalog">КАТАЛОГ</router-link>
           <router-link to="/home#about">О НАС</router-link>
           <router-link to="/home#delivery">ДОСТАВКА И ОПЛАТА</router-link>
           <router-link to="/home#instagram">МЫ В INSTAGRAM</router-link>
@@ -36,16 +36,16 @@
 
       <div class="footer__sublink-wrap">
         <div class="footer__sublink-one-col">
-          <router-link to="/home/">Мыло</router-link>
-          <router-link to="/home/">Уход за кожей</router-link>
-          <router-link to="/home/">Уход за волосами</router-link>
-          <router-link to="/home/">Соль и бисер для ванн</router-link>
+          <router-link :to="{ path: 'catalog', query: { category: 'soap' } }">Мыло</router-link>
+          <router-link :to="{ path: 'catalog', query: { category: 'skin-care' } }">Уход за кожей</router-link>
+          <router-link :to="{ path: 'catalog', query: { category: 'hair-care' } }">Уход за волосами</router-link>
+          <router-link :to="{ path: 'catalog', query: { category: 'bath-salt' } }">Соль и бисер для ванн</router-link>
         </div>
         <div class="footer__sublink-two-col">
-          <router-link to="/home/">Бомбочки</router-link>
-          <router-link to="/home/">Флорентийское саше</router-link>
-          <router-link to="/home/">Свечи</router-link>
-          <router-link to="/home/">Разное</router-link>
+          <router-link :to="{ path: 'catalog', query: { category: 'bombs' } }">Бомбочки</router-link>
+          <router-link :to="{ path: 'catalog', query: { category: 'florentine-sachet' } }">Флорентийское саше</router-link>
+          <router-link :to="{ path: 'catalog', query: { category: 'candles' } }">Свечи</router-link>
+          <router-link :to="{ path: 'catalog', query: { category: 'different' } }">Разное</router-link>
         </div>
       </div>
 

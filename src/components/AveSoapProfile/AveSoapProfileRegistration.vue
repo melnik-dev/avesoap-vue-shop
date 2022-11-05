@@ -1,20 +1,34 @@
 <template>
   <h3>Регистрация</h3>
 
-  <div class="login__wrapper">
+  <form class="login__wrapper" @submit.prevent="signUp">
     <div class="login__name">
       <span>ИМЯ ПОЛЬЗОВАТЕЛЯ ИЛИ E-MAIL *</span>
-      <input type="text" placeholder="ekaterina.ivanova@gmail.com">
+      <input
+          v-model.lazy="email"
+          type="text"
+          placeholder="ekaterina.ivanova@gmail.com">
+      <span class="error" v-if="v$.email.$error">
+       {{ v$.email.$errors[0].$message }}
+      </span>
     </div>
 
     <div class="login__password">
       <span>ПАРОЛЬ *</span>
-      <input type="password">
+      <input
+          v-model.lazy="password"
+          type="password">
+      <span class="error" v-if="v$.password.$error">
+        {{ v$.password.$errors[0].$message }}
+      </span>
     </div>
 
     <div class="login__password">
       <span>ПОВТАРИТЬ ПАРОЛЬ *</span>
-      <input type="password">
+      <input v-model.lazy="confirmPassword" type="password">
+      <span class="error" v-if="v$.confirmPassword.$error">
+        {{ v$.confirmPassword.$errors[0].$message }}
+      </span>
     </div>
 
     <div class="login__btn-box">
@@ -26,14 +40,54 @@
 
       <button @click="goToAuthorization">Авторизация</button>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
+import {useVuelidate} from '@vuelidate/core'
+import {required, email, minLength, sameAs, helpers} from '@vuelidate/validators'
+
 export default {
   name: "AveSoapProfileRegistration",
   emits: ['goToAuthorization'],
+  data() {
+    return {
+      v$: useVuelidate(),
+      email: '',
+      password: '',
+      confirmPassword: '',
+    }
+  },
+  validations() {
+    return {
+      email: {
+        required: helpers.withMessage("Обезательное поле", required),
+        email: helpers.withMessage("Неправельная почта", email),
+      },
+      password: {
+        required: helpers.withMessage("Обезательное поле", required),
+        minLength: helpers.withMessage("Пароль больше 6 символов", minLength(6)),
+      },
+      confirmPassword: {
+        required: helpers.withMessage("Обезательное поле", required),
+        sameAs: helpers.withMessage("Пароль не совпадает", sameAs(this.password)),
+      }
+    }
+  },
   methods: {
+    async signUp() {
+      // this.$store.dispatch('signUp', {
+      //   email: this.email,
+      //   password: this.password,
+      // })
+      // const isFormCorrect = await this.v$.$validate()
+      this.v$.$validate()
+      if (!this.v$.$error) {
+        console.log('ok')
+      } else {
+        console.log('error')
+      }
+    },
     goToAuthorization() {
       this.$emit('goToAuthorization')
     }

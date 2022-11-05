@@ -1,7 +1,7 @@
 <template>
   <section class="profile px-4 container-lg px-lg-0">
     <h2>Личный кабинет</h2>
-    <keep-alive v-if="!this.$store.getters.getIsAuthorization">
+    <keep-alive v-if="!getIsAuthorization">
       <component
           :is="activeComponent"
           @go-to-registration="goToRegistration"
@@ -16,6 +16,7 @@
 import AveSoapProfileAuthorization from './AveSoapProfileAuthorization.vue';
 import AveSoapProfileRegistration from './AveSoapProfileRegistration.vue';
 import AveSoapProfileLK from './AveSoapProfileLK.vue';
+import {mapGetters} from "vuex";
 
 export default {
   name: "AveSoapProfile",
@@ -42,6 +43,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['getIsAuthorization']),
     activeComponent() {
       return this.nameComponent === 'Authorization' ? AveSoapProfileAuthorization : AveSoapProfileRegistration
     }
