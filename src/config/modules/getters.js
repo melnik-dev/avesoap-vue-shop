@@ -8,7 +8,13 @@ export default {
     getCart(state) {
         return state.data.cart
     },
-    getIsAuthorization(state) {
-        return state.isAuthorization
+    getIsAuthorizationUser(state) {
+        return state.isAuthorizationUser
+    },
+    getUser(state) {
+        return state.user
+    },
+    isUserLogin(state) {
+        return state.user !== null
     }
 }

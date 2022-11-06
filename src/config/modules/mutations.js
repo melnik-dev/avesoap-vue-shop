@@ -1,5 +1,7 @@
 export default {
-
+    setIsAuthorizationUser(state) {
+        state.isAuthorizationUser = true
+    },
     addToFavorite(state, productId) {
         state.data.product.forEach(item => {
             if (item.id === productId) {

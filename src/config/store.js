@@ -8,7 +8,8 @@ const store = createStore({
     state() {
         return {
             data: shopData,
-            isAuthorization: false
+            user: null,
+            isAuthorizationUser: false
         }
     },
     getters: getters,

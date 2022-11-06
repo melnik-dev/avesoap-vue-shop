@@ -1,4 +1,5 @@
 <template>
+  <section class="section px-4 container-lg px-lg-0">
   <h3>Регистрация</h3>
 
   <form class="login__wrapper" @submit.prevent="signUp">
@@ -41,6 +42,8 @@
       <button @click="goToAuthorization">Авторизация</button>
     </div>
   </form>
+
+  </section>
 </template>
 
 <script>
@@ -49,7 +52,6 @@ import {required, email, minLength, sameAs, helpers} from '@vuelidate/validators
 
 export default {
   name: "AveSoapProfileRegistration",
-  emits: ['goToAuthorization'],
   data() {
     return {
       v$: useVuelidate(),
@@ -76,20 +78,23 @@ export default {
   },
   methods: {
     async signUp() {
-      // this.$store.dispatch('signUp', {
-      //   email: this.email,
-      //   password: this.password,
-      // })
       // const isFormCorrect = await this.v$.$validate()
       this.v$.$validate()
       if (!this.v$.$error) {
         console.log('ok')
+        this.$store.dispatch('signUp', {
+          email: this.email,
+          password: this.password,
+        })
+            .then(() => this.$router.push('profile'))
+            .then(() => console.log(this.$store.getters.getIsAuthorizationUser))
+            .catch(error => console.log(error))
       } else {
         console.log('error')
       }
     },
     goToAuthorization() {
-      this.$emit('goToAuthorization')
+      this.$router.push('authorization');
     }
   }
 }
