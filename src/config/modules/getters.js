@@ -9,12 +9,9 @@ export default {
         return state.data.cart
     },
     getIsAuthorizationUser(state) {
-        return state.isAuthorizationUser
+        return state.user !== null
     },
     getUser(state) {
         return state.user
     },
-    isUserLogin(state) {
-        return state.user !== null
-    }
 }

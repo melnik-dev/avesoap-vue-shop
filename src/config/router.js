@@ -8,6 +8,10 @@ import AveSoapProfile from "../components/AveSoapProfile/AveSoapProfile.vue";
 import AveSoapNotFound from "../components/AveSoapNotFound.vue";
 import AveSoapProfileAuthorization from "@/components/AveSoapProfile/AveSoapProfileAuthorization";
 import AveSoapProfileRegistration from "@/components/AveSoapProfile/AveSoapProfileRegistration";
+import AveSoapProfileAddress from "@/components/AveSoapProfile/AveSoapProfileAddress";
+import AveSoapProfileOrders from "@/components/AveSoapProfile/AveSoapProfileOrders";
+import AveSoapProfileChangePassword from "@/components/AveSoapProfile/AveSoapProfileChangePassword";
+
 import store from "@/config/store";
 
 
@@ -24,7 +28,20 @@ let router = createRouter({
             component: AveSoapProfile,
             meta: {
                 requiresAuth: true
-            }
+            },
+            children: [
+                {
+                    path: '',
+                    component: AveSoapProfileAddress
+                },{
+                    path: '/profile/orders',
+                    component: AveSoapProfileOrders
+                },
+                {
+                    path: '/profile/change-password',
+                    component: AveSoapProfileChangePassword
+                }
+            ]
         },
         {path: "/authorization", component: AveSoapProfileAuthorization},
         {path: "/registration", component: AveSoapProfileRegistration},
@@ -48,14 +65,11 @@ let router = createRouter({
     }
 });
 router.beforeEach((to, from, next) => {
-        // if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })
-        // else next()
-        if (to.meta.requiresAuth && !store.state.isAuthorizationUser) {
+        if (to.meta.requiresAuth && !store.getters.getIsAuthorizationUser) {
             console.log('to ', to)
             console.log('from ', from)
             next('authorization')
         } else {
-            console.log('no auth')
             next()
         }
     });

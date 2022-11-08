@@ -1,5 +1,5 @@
 <template>
-  <section class="section px-4 container-lg px-lg-0">
+  <section>
     <h3>Авторизация</h3>
 
     <div class="login__wrapper">
@@ -73,7 +73,7 @@ export default {
           password: this.password,
         })
             .then(() => this.$router.push('profile'))
-            .then(() => console.log(this.$store.getters.getIsAuthorizationUser))
+            .then(() => console.log('USER IS:' + this.$store.getters.getIsAuthorizationUser))
             .catch(error => console.log(error))
       } else {
         console.log('error')

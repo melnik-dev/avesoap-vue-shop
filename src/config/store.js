@@ -9,7 +9,6 @@ const store = createStore({
         return {
             data: shopData,
             user: null,
-            isAuthorizationUser: false
         }
     },
     getters: getters,

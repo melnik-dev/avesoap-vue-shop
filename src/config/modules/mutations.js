@@ -1,6 +1,6 @@
 export default {
-    setIsAuthorizationUser(state) {
-        state.isAuthorizationUser = true
+    logOutUser(state) {
+        state.user = null
     },
     addToFavorite(state, productId) {
         state.data.product.forEach(item => {

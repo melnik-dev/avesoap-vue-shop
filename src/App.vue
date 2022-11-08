@@ -16,6 +16,9 @@ export default {
     AveSoapHeader,
     AveSoapMain,
     AveSoapFooter
+  },
+  created() {
+this.$store.dispatch('checkUser')
   }
 }
 </script>

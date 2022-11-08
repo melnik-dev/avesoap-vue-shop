@@ -1,5 +1,5 @@
 <template>
-  <section class="section px-4 container-lg px-lg-0">
+  <section>
   <h3>Регистрация</h3>
 
   <form class="login__wrapper" @submit.prevent="signUp">

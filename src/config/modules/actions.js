@@ -2,11 +2,12 @@ import firebaseApp from '@/config/firebase';
 import {
     getAuth,
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    onAuthStateChanged
 } from "firebase/auth";
 
 export default {
-    async signUp({ commit, state }, payload) {
+    async signUp({ state }, payload) {
         const auth = getAuth(firebaseApp);
         try {
             const userCredential = await createUserWithEmailAndPassword(
@@ -14,24 +15,12 @@ export default {
                 payload.email,
                 payload.password);
             state.user = userCredential.user;
-            commit('setIsAuthorizationUser');
         } catch (error) {
             console.log(error)
             throw error
         }
-            // .then((userCredential) => {
-            //     // Signed in
-            //     state.user = userCredential.user;
-            //     console.log(state.user);
-            // })
-            // .catch((error) => {
-            //     const errorCode = error.code;
-            //     const errorMessage = error.message;
-            //     console.log(errorCode);
-            //     console.log(errorMessage);
-            // });
     },
-    async logIn({ commit, state }, payload) {
+    async logIn({ state }, payload) {
         const auth = getAuth(firebaseApp);
         try {
             const userCredential = await signInWithEmailAndPassword(
@@ -39,7 +28,6 @@ export default {
                 payload.email,
                 payload.password);
             state.user = userCredential.user;
-            commit('setIsAuthorizationUser');
         } catch (error) {
             console.log(error)
             throw error
@@ -58,5 +46,23 @@ export default {
             //     console.log(errorCode);
             //     console.log(errorMessage);
             // });
+    },
+    checkUser(state) {
+        const auth = getAuth();
+       onAuthStateChanged(auth, (user) => {
+            if (user) {
+                state.user = user
+                console.log('checkUser: User is sigin')
+                console.log(state.user)
+            } else {
+                console.log('User is signed out')
+            }
+        });
+    },
+    logOutUser({commit}) {
+        const auth = getAuth(firebaseApp);
+        auth.signOut();
+        commit('logOutUser');
     }
+
 }
