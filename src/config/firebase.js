@@ -7,6 +7,7 @@ import { initializeApp } from "firebase/app";
 const firebaseConfig = {
     apiKey: "AIzaSyCCnRBfNOb1WbWLxsCrY1tGlo9Ka--92WY",
     authDomain: "avesoap-vue-shop.firebaseapp.com",
+    databaseURL: "https://avesoap-vue-shop-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "avesoap-vue-shop",
     storageBucket: "avesoap-vue-shop.appspot.com",
     messagingSenderId: "90882637103",

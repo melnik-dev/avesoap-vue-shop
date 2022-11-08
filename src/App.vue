@@ -19,6 +19,9 @@ export default {
   },
   created() {
 this.$store.dispatch('checkUser')
+
+console.log(this.$store.state.data)
+
   }
 }
 </script>

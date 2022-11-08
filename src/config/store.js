@@ -9,6 +9,7 @@ const store = createStore({
         return {
             data: shopData,
             user: null,
+            baza: []
         }
     },
     getters: getters,
