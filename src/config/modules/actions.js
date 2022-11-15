@@ -2,8 +2,7 @@ import firebaseApp from '@/config/firebase';
 import {
     getAuth,
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    onAuthStateChanged
+    signInWithEmailAndPassword
 } from "firebase/auth";
 import {getDatabase, ref, onValue} from "firebase/database";
 
@@ -48,18 +47,23 @@ export default {
         //     console.log(errorMessage);
         // });
     },
-    checkUser(state) {
-        const auth = getAuth(firebaseApp);
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                state.user = user
-                console.log('checkUser: User is sigin')
-                console.log(state.user)
-            } else {
-                console.log('User is signed out')
-            }
-        });
-    },
+    // async checkUser(state) {
+    //     const auth = getAuth(firebaseApp);
+    //     await new Promise((resolve) => {
+    //         onAuthStateChanged(auth, (user) => {
+    //             if (user) {
+    //                 state.user = user
+    //                 console.log('checkUser: User is sigin')
+    //                 console.log(state.user)
+    //             } else {
+    //                 state.user = null
+    //                 console.log('User is signed out')
+    //             }
+    //             resolve('good')
+    //         })
+    //     })
+    //
+    // },
     logOutUser({commit}) {
         const auth = getAuth(firebaseApp);
         auth.signOut();
@@ -76,7 +80,6 @@ export default {
             state.data = snapshot.val();
         });
         console.log(state.baza)
-
     },
     // async writeUserData() {
     //     const db = getDatabase(firebaseApp);

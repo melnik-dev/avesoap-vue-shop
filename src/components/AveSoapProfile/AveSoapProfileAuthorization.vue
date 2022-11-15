@@ -73,7 +73,7 @@ export default {
           password: this.password,
         })
             .then(() => this.$router.push('profile'))
-            .then(() => console.log('USER IS:' + this.$store.getters.getIsAuthorizationUser))
+            // .then(() => console.log('USER IS:' + this.$store.getters.getIsAuthorizationUser))
             .catch(error => console.log(error))
       } else {
         console.log('error')

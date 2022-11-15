@@ -1,8 +1,8 @@
 <template lang="pug">
 .wrapper
-  AveSoapHeader
-  AveSoapMain
-  AveSoapFooter
+    AveSoapHeader
+    AveSoapMain
+    AveSoapFooter
 </template>
 
 <script>
@@ -16,12 +16,6 @@ export default {
     AveSoapHeader,
     AveSoapMain,
     AveSoapFooter
-  },
-  created() {
-this.$store.dispatch('checkUser')
-
-console.log(this.$store.state.data)
-
   }
 }
 </script>

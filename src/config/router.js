@@ -12,7 +12,8 @@ import AveSoapProfileAddress from "@/components/AveSoapProfile/AveSoapProfileAdd
 import AveSoapProfileOrders from "@/components/AveSoapProfile/AveSoapProfileOrders";
 import AveSoapProfileChangePassword from "@/components/AveSoapProfile/AveSoapProfileChangePassword";
 
-import store from "@/config/store";
+import firebaseApp from '@/config/firebase';
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 
 
 let router = createRouter({
@@ -64,8 +65,23 @@ let router = createRouter({
         return {top: 0}
     }
 });
-router.beforeEach((to, from, next) => {
-        if (to.meta.requiresAuth && !store.getters.getIsAuthorizationUser) {
+router.beforeEach(async (to, from, next) => {
+    const auth = getAuth(firebaseApp);
+    let isUser = null;
+    await new Promise((resolve) => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                isUser = user
+                console.log('checkUser: User is sigin')
+            } else {
+                isUser = null
+                console.log('User is signed out')
+            }
+            resolve('good')
+        })
+    })
+    console.log(to.meta.requiresAuth, !isUser)
+        if (to.meta.requiresAuth && !isUser) {
             console.log('to ', to)
             console.log('from ', from)
             next('authorization')
